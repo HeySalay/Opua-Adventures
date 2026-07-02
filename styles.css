@@ -1,0 +1,2055 @@
+/* Place your CSS styles in this file */
+
+/* ==========================================================================================================================
+================================================= MASTER STYLES =============================================================          
+============================================================================================================================= */
+
+/* ==========================================================================================================================
+                COLOR PALETTE
+============================================================================================================================= */
+:root {
+    --brand-blue: #56B4E9;
+    --brand-dark-blue: #0072B2;
+    --brand-dark-text: #333333;
+    --brand-light-blue: #99DAFF;
+    --brand-light-grey: #f5f5f5;
+    --brand-light-text: #555555;
+    --brand-orange: #FFB00D;
+    --brand-white: #FFFFFF;
+}
+
+/* ==========================================================================================================================
+                GOOGLE FONTS
+============================================================================================================================= */
+
+.figtree-700 {                                      /* Change anything after "-" to make a unique version, then change the details below */
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;                               /* custom font-weight */
+    font-style: normal; 
+    }
+
+/* ==========================================================================================================================
+                GOOGLE ICON GLOBAL STYLE FIXES
+============================================================================================================================= */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
+
+.emoji-icon {
+    margin-bottom: 15px;
+    font-size: 48px !important;
+    color: var(--brand-orange);
+}
+
+.bookmark-icon,
+.group-icon,
+.phone-icon,
+.pin-icon {
+    font-variation-settings: 'FILL' 1 !important; 
+}
+
+.bookmark-icon,
+.info-icon,
+.phone-icon,
+.pin-icon {
+    vertical-align: -6px;
+}
+
+.bookmark-icon,
+.star-icon {
+    color: var(--brand-orange);
+}
+
+.star-icon {
+    font-size: 48px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-variation-settings: 'FILL' 1 !important; 
+}
+
+
+/* ==========================================================================================================================
+                    HTML
+============================================================================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;                         /* Makes sizing elements much easier later on */
+}
+
+
+/* ==========================================================================================================================
+                    BODY
+============================================================================================================================= */
+body {
+    background-color: var(--brand-light-grey);
+    margin: 0;
+    padding: 0;
+    min-width: 320px;
+    overflow-x: hidden;
+
+}
+
+@media (min-width: 1024px) {
+    body {
+        min-width: 475px;
+    }
+}
+
+
+/* ==========================================================================================================================
+                    HEADER
+============================================================================================================================= */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 2%;
+    background-color: var(--brand-white);
+    position: sticky;                               /* REQUIRED for z-index to work */
+    top: 0;                                         /* REQUIRED to tell position where to stick */
+    z-index: 10;                                    /* Higher z-index to float above the Video Banner */
+}
+
+.logo {
+    flex: 0 1 340px;
+    display: flex;
+    justify-content: flex-start;                    /* Keeps the image pinned to the left edge */
+    align-items: center;                            /* Vertically centers the image */
+}
+
+#opua-logo {
+    height: clamp(50px, 7vw, 75px);
+    width: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+/* LOGO - MOBILE OVERRIDE */
+@media (max-width: 768px) {
+    .logo {
+        flex: initial;              
+    }
+}
+
+/* ---------------------------------------------- 
+    Hamburger Button Default (Hidden on Desktop) 
+------------------------------------------------- */
+.hamburger {
+    display: none;                                  /* Hidden on large screens by default */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 5px;                                       /* Space between the three lines */
+    flex-direction: column;
+    margin-left: auto;                              /* Keeps the Harmburger Menu to the Right */
+}  
+
+.hamburger .bar {                                   /* The three lines of the hamburger */
+    width: 25px;
+    height: 3px;
+    background-color: var(--brand-dark-text); 
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;               /* Transition smoothly eases from Hamburger to X button and back */
+}
+
+/* ---- THE 'X' ANIMATION (When the menu is open) ---- */
+
+/* 1. Top Line: Moves down 8px and rotates */
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+/* 2. Middle Line: Fades away completely */
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0; 
+}
+
+/* 3. Bottom Line: Moves up 8px and rotates the opposite way */
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ----------------- 
+    Navbar Creation
+-------------------- */
+/* NAVBAR - DESKTOP SETUP */
+.navbar {
+    flex: 0 1 auto;
+    padding: 0 20px;
+}
+
+.mobile-only-phone {
+    color: var(--brand-blue);
+    display: none;
+    transition: all 0.3s ease;
+}
+
+.navbar a {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brand-dark-text);
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: var(--brand-blue);
+}
+
+.navbar a.active {
+    color: var(--brand-blue) !important;
+    font-weight: 700;
+}
+
+.navbar ul {
+    list-style-type: none;                          /* Removes default bullet points */
+    margin: 0;                                      /* Removes default browser spacing */
+    padding: 0;                                     /* Removes default browser spacing */
+    display: flex;                                  /* Turns the list into a flexible row */
+    justify-content: center;                        /* Centers links horizontally */
+    gap: 20px;                                      /* Adds clean spacing between the links */
+}
+
+/* HEADER [header, hamburger, navbar] - MOBILE OVERRIDE */
+@media (max-width: 975px) {
+    .site-header {
+        display: flex;                              /* Switches back to Flexbox for mobile menu layout! */
+        justify-content: space-between;
+    }
+    .hamburger {
+        display: flex;                              /* Turn the hamburger button back on! */
+        margin-left: 0;
+    }
+
+    .navbar ul {
+        display: none;                              /* 1. Hides the horizontal flex row */
+        flex-direction: column;                     /* 2. Changes the layout to stack vertically */
+        
+        position: absolute;                         /* 3. Pulls menu out of the header so it can drop down */
+        top: 100%;                                  /* 4. Pushes it directly underneath the header */
+        left: 0;
+        width: 100%;
+        background-color: var(--brand-white);
+        text-align: center;
+        padding: 10px 0;
+        box-shadow: 0px 16px 16px rgba(0,0,0,0.3); /* Adds a shadow so it pops off the video banner */
+    }
+
+    .navbar ul li {
+        margin: 5px 0;                               /* Give the vertical links a little breathing room on phones */
+    }
+
+
+    .navbar ul.active {                              /* This is the class the JavaScript adds to turn the menu back on! */
+        display: flex; 
+    }
+
+    .mobile-only-phone {
+        display: block;                              /* Turns the phone number back on! */
+        margin-top: 15px !important;                 /* Pushes it down from the other links */
+        padding-top: 15px;                           /* Adds space above the text */
+        border-top: 2px solid #f4f4f4;             /* Creates a clean divider line */
+    }
+    .mobile-only-phone a:hover,
+    .mobile-only-phone a:active {
+        color: var(--brand-dark-blue) !important;
+    }
+}
+
+
+/* ----------------- 
+    Header Actions
+-------------------- */
+/* HEADER ACTIONS DIV - DESKTOP SET UP */
+.header-actions {
+    flex: 0 1 340px;
+    display: flex;
+    justify-content: flex-end;                      /* Pins the buttons to the right edge of the page */
+    align-items: center;
+    gap: 20px;                                      /* Space between phone number and Book Now button */
+}
+
+/* HEADER ACTIONS DIV - MOBILE OVERRIDE */
+@media (max-width: 768px) {
+    .header-actions {
+        flex: initial;                              /* Turns off the "spring" effect for mobile */
+        justify-content: center;                    /* Resets the alignment */
+        
+        margin-left: auto;       
+        margin-right: 15px;      
+        gap: 10px;               
+    }
+}
+
+@media (max-width:975px) {
+    .header-actions {
+        margin-left: auto;                          /* Pushes both the actions AND the hamburger to the right! */
+        margin-right: 15px;                         /* Adds a little breathing room between the Book button and the Hamburger */
+        gap: 10px;                                  /* Shrinks the gap between the phone and button for mobile */
+    }
+}
+
+
+/* HEADER PHONE - DESKTOP SETUP */
+.header-phone {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brand-dark-text);
+    text-align: right;
+    text-decoration: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.header-phone:hover {
+    color: var(--brand-blue);
+}
+
+
+/* HEADER PHONE - MOBILE OVERRIDE */
+@media (max-width: 1175px) {
+    .header-phone {
+        display: none;
+    }
+}
+
+
+/* HEADER BOOK NOW - DESKTOP SETUP */
+.header-book {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    background-color: var(--brand-blue);
+    border: none;
+    border-radius: 25px;
+    padding: 16px 36px;
+    margin: 10px 0px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.header-book:hover {
+    background-color: var(--brand-dark-blue);
+}
+
+/* HEADER BOOK NOW - MOBILE OVERRIDE */
+@media (max-width: 420px) {
+    .header-book {
+        display: none;
+    }
+}
+
+/* ==========================================================================================================================
+                    CUSTOM FOOTER
+============================================================================================================================= */
+.custom-footer {
+    background-color: var(--brand-dark-text);
+    color: var(--brand-white);
+    padding: 60px 20px;
+    font-family: "Arial", sans-serif;
+    font-size: 15px;
+}
+
+/* ---- The Flexbox Container ---- */
+.custom-footer .footer-container {
+    display: flex;
+    justify-content: space-between;                       /* Spreads the 4 columns perfectly across the screen */
+    max-width: 1300px;
+    margin: 0 auto;
+    gap: 40px;
+    flex-wrap: wrap;                                      /* CRITICAL: Tells Flexbox to wrap to a new line if it runs out of space! */
+}
+
+/* ---- Individual Columns ---- */
+.footer-col {
+    flex: 1;                                                /* Tells each column to take up an equal fraction of the space */
+    min-width: 200px; 
+}
+
+/* We give the About column a little extra room because of the long paragraph */
+.footer-col-about { flex: 1.5; }
+.footer-col-logo { flex: 0.8; }
+
+/* ---- Typography ---- */
+.custom-footer h4 {
+    color: var(--brand-blue);
+    font-family: "Figtree", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.custom-footer p {
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.custom-footer strong {
+    font-weight: 700;
+}
+
+/* ---- Logo & Socials ---- */
+.custom-footer .footer-logo {
+    max-width: 100%;
+    height: auto;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;                                     /* Vertically centers the icon */
+    justify-content: center;                                 /* Horizontally centers the icon */
+    width: 38px;
+    height: 38px;
+    background-color: var(--brand-blue);
+    color: var(--brand-white);
+    border-radius: 50%;                                      /* Makes it a perfect circle! */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: var(--brand-dark-blue);
+    color: var(--brand-white) !important;
+    transform: translateY(-3px);                            /* Cute hover float effect :3 */
+}
+
+/* ---- Links & Accents ---- */
+.custom-footer a {
+    color: var(--brand-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.custom-footer a:hover {
+    color: var(--brand-blue);
+}
+
+.custom-footer .blue-link,
+.footer-legal a {
+    color: var(--brand-blue);
+}
+
+.custom-footer .blue-link:hover,
+.footer-legal a:hover {
+    color: var(--brand-orange);
+}
+
+/* ---- Responsive: Tablet & Mobile ---- */
+@media (max-width: 1024px) {
+    .footer-col {
+        flex: 1 1 40%;                                      /* Tells Flexbox to take up 40% width, creating a 2x2 grid on tablets! */
+    }
+}
+
+@media (max-width: 650px) {
+    .footer-col {
+        flex: 1 1 100%;                                     /* Tells Flexbox to take up 100% width, stacking vertically on phones! */
+    }
+}
+
+/* ==========================================================================================================================
+                    SCROLL TO TOP BUTTON
+============================================================================================================================= */
+.scroll-top-btn {
+    position: fixed;                                        /* Pins it to the glass of the screen, not the page */
+    bottom: 30px;                                           /* 30px from the bottom edge */
+    right: 30px;                                            /* 30px from the right edge */
+    z-index: 99;                                            /* Forces it to float above EVERYTHING else */
+    
+    background-color: var(--brand-blue); 
+    color: var(--brand-white);
+    border: 2px solid var(--brand-white);
+    border-radius: 50%;                                     /* Makes it a perfect circle */
+    width: 50px;
+    height: 50px;
+    
+    /* Flexbox to perfectly center the arrow icon */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    
+    /* Hide it by default with a smooth fade transition */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.scroll-top-btn .material-icons {
+    font-size: 32px;                                        /* Makes the arrow nice and bold */
+}
+
+.scroll-top-btn:hover {
+    background-color: var(--brand-dark-blue);
+    transform: translateY(-3px);                            /* A cute little float effect when hovered :3 */
+}
+
+/* The magic class that JavaScript will add when users scroll down! */
+.scroll-top-btn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive adjustment for phones */
+@media (max-width: 600px) {
+    .scroll-top-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+
+/* ==========================================================================================================================
+============================================== HOME PAGE STYLES =============================================================          
+============================================================================================================================= */
+
+
+/* ==========================================================================================================================
+                VIDEO BANNER
+============================================================================================================================= */
+/* --------------------------------------------------------------------------------------------
+   1. Main Container -- This div holds the video and text content and defines the visible area
+----------------------------------------------------------------------------------------------- */         
+.video-container {
+    position: relative;
+    display: flex;                                 /* Flexbox for fluid centering and fluid height */
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 60vh;                              /* Minimum 60% of viewport height */     
+    padding: 30px 20px;                             /* Padding ensures the text doesn't touch the top or bottom */
+    overflow: hidden;
+}
+/* ---------------------------------------------------------------------------------
+    2. Video Wrapper -- This div sits behind the text content and holds the iframe
+------------------------------------------------------------------------------------ */ 
+.vimeo-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;                           /* Prevents user interaction with the video */
+    z-index: -1;                                    /* Lower z-index to stay in background */
+}
+/* ----------------------
+    3. iFrame Styling
+------------------------- */
+.vimeo-background iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: 177.77vh;
+    height: 56.25vw;
+}
+/* -------------------------------
+    4. Black Background Overlay 
+---------------------------------- */
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0,0.45);
+    pointer-events: none;                           /* Prevents user interaction with the video */
+    z-index: 0; 
+}
+/* -------------------------
+    5. Text Content Styles - Can be reused for other page banners!
+---------------------------- */
+/* BANNER - DESKTOP SETUP */
+.banner-content {
+    position: relative;
+    width:100%;
+    color: var(--brand-white);
+    text-align: center;
+    z-index: 2;
+}
+
+.banner-content h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(22px, 6vw, 44px);
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.2;                               /* Relative line-height that scales with the font */
+    color: var(--brand-white);
+    margin: 16px 16px;
+}
+
+.banner-content .contact-banner-h1 {
+    font-size: clamp(32px, 6vw, 72px);
+}
+
+.banner-content h3 {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.6px;
+    line-height: 24px;
+    color: var(--brand-white);
+    padding: 0px 10%;
+    margin: 0px 36px;
+}
+
+.banner-content p {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.6px;
+    line-height: 24px;
+    color: var(--brand-white);
+    margin: 0px 18px;
+}
+
+.banner-content .faq-banner-p {
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    color: var(--brand-white);
+    margin: 0px 12px;
+    text-align: center;
+}
+
+.banner-content p b {
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+/* BANNER - MOBILE OVERRIDES */
+@media (min-width:320px) {
+    .hide-at-320 {
+        display: none;
+    }
+}
+@media (min-width:1125px) {
+    .hide-at-1125 {
+        display: none;
+    }
+}
+
+/* LISTS - DESKTOP SETUP */
+.activity-list li {
+    display: flex;
+    align-items: center;     /* The magic command for perfect vertical alignment! */
+    justify-content: center; 
+    gap: 8px;
+
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.6px;
+    line-height: 24px;
+    color: var(--brand-white);
+    margin: 0px 18px;
+}
+
+.check-list li {
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--brand-white);
+    margin: 0px 12px;
+    text-align: center;
+}
+
+.activity-list ul,
+.check-list ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* LISTS - MOBILE OVERRIDE */
+@media (max-width: 980px) {
+    .activity-list ul,
+    .check-list ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
+
+/* ALL BUTTONS & BUTTON ICONS - DESKTOP SETUP */
+.book-button,
+.call-button {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brand-white);
+    background-color: var(--brand-blue);
+    border: none;
+    border-radius: 25px;
+    padding: 16px 36px;
+    margin: 36px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.learn-button {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brand-white);
+    background-color: var(--brand-dark-text);
+    border: none;
+    border-radius: 25px;
+    padding: 16px 36px;
+    margin: 8px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.book-button:hover,
+.call-button:hover,
+.learn-button:hover {
+    background-color: var(--brand-dark-blue);
+}
+
+
+
+/* ALL BUTTONS - MOBILE OVERRIDE */
+@media (max-width: 600px) {
+    .book-button,
+    .call-button {
+        padding: 15px 16px;
+    }
+}
+@media (max-width:432px) {
+    .book-and-call-buttons {
+        margin: 16px 8px;
+    }
+    .book-button,
+    .call-button {
+        margin: 8px 8px;
+    }
+}
+
+/* --------------------------------------
+6. Flite Authorized Partner Image Style 
+----------------------------------------- */
+#flite-authorized-partner {
+    width: 50%;
+    max-width: 400px;
+    min-width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ==========================================================================================================================
+                CHOOSE YOUR ADVENTURE SECTION
+============================================================================================================================= */
+/* TEXT SET UP */
+
+.choose-your-adventure h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(22px, 7.5vw, 42px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 36px 16px;
+}
+.choose-your-adventure h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(22px, 6vw, 36px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 16px 8px;
+    width: 100%;
+}
+.choose-your-adventure h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(14px, 6vw, 26px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin: 0px 12px;
+}
+.choose-your-adventure p {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 22px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    color: var(--brand-dark-text);
+    margin: 0px 12px;
+}   
+.choose-your-adventure li {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 22px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    text-decoration: none;
+    list-style-type: none;
+    color: var(--brand-dark-text);
+    margin: 0px 12px;
+}  
+.brand-check {
+    color: var(--brand-blue);
+}
+
+/* ROUND ADVENTURE CONTAINERS - DESKTOP SETUP */
+.adventure-content {
+    display: flex;
+    justify-content: center;                        /* Centers the two round containers on the page */
+    gap: 60px;                                      /* The space between the two containers */
+    padding: 20px 20px 80px 20px;                   /* Breathing room above and below the section -- slightly smaller on top for page flow */
+    max-width: 1400px;                              /* Prevents the section from stretching too wide on massive monitors */
+    margin: 0 auto;                                 /* Centers the wrapper itself */
+}
+
+.round-container {
+    flex: 1;                                        /* Makes both containers take up equal space */
+    min-width: 0;
+    max-width: 800px;                               
+    border-radius: 25px;                            /* Rounds the corners evenly witout stretching */
+    background-color: var(--brand-white);                    
+    
+    /* vv Flexbox code to center the text INSIDE the rounded square vv */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    padding: 30px;                                  /* Keeps text from touching the curved edges */
+    box-shadow: 0px 16px 8px rgba(0,0,0,0.3);     /* Adds a shadow beneath the containers */
+}
+
+.round-container img {
+    max-width: 100%;
+    border-radius: 25px;
+    align-self: center;                             /* Overrides the flex alignment that puts everything else to the left */
+    height: auto;
+}
+
+/* ---- Adventure Content Buttons ---- */
+.round-container .book-button {
+    /* 1. The Magic Trick: Pins the button to the bottom, also forces the learn button down to the bottom as well */
+    margin-top: auto; 
+}
+
+.round-container .book-button,
+.round-container .learn-button {
+    /* 2. Overrides the video banner margins to fit the container */
+    margin-bottom: 0px;
+    margin-left: 0;
+    margin-right: 0;
+    
+    /* 3. Forces the button to stretch across the bottom of the container */
+    width: 100%; 
+    
+    /* 4. A little extra breathing room around the button */
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+/* Hover/Active states specifically for the container buttons */
+.round-container .book-button:hover,
+.round-container .book-button:active {
+    background-color: var(--brand-dark-blue);
+    color: var(--brand-white);
+}
+
+/* ROUND CONTAINER - MOBILE OVERRIDES */
+@media (max-width: 980px) {
+    .adventure-content {
+        flex-direction: column;                     /* Stacks the rounded squares vertically! */
+        align-items: center;                        /* Keeps the stacked rounded squares in the middle of the screen */
+        gap: 40px;                                  /* Shrinks the space between the stacked rounded squares a bit */
+    }
+
+    .round-container {
+        width: 100%;                                /* Keeps them the same width when stacked on top of each other */
+    }
+}
+
+/* ==========================================================================================================================
+                ULTIMATE ADVENTURE PACKAGE SECTION
+============================================================================================================================= */
+.ultimate-adventure-package {
+    background-color: var(--brand-blue); 
+    padding: 20px 40px 40px 40px;
+    color: var(--brand-white);
+}
+
+/* ---- Header Text ---- */
+.package-header {
+    max-width: 1000px;
+    margin: 0 auto 40px auto;
+}
+.package-header h1 {
+    font-family: "Figtree", sans-serif;
+    font-size: clamp(28px, 6vw, 48px);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.package-header h3 {
+    font-family: "Figtree", sans-serif;
+    font-size: clamp(14px, 3vw, 18px);
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.package-header p {
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    text-align: left;
+    line-height: 1.5;
+    max-width: 1000px;
+    margin: 0 auto;
+    
+}
+
+/* ---- 2-Column Layout ---- */
+.package-content {
+    display: flex;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 60px;
+    align-items: center;                               /* Keeps the card and the list vertically centered with each other */
+}
+
+/* ---- Left Column: Features ---- */
+.package-features {
+    flex: 1;
+}
+.package-features h2 {
+    font-family: "Figtree", sans-serif;
+    font-size: clamp(24px, 5vw, 36px);
+    margin-bottom: 25px;
+}
+.package-features ul {
+    list-style: none;
+    padding: 0;
+}
+.package-features li {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(16px, 5vw, 22px);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---- Right Column: Pricing Card ---- */
+.package-pricing {
+    flex: 1;
+    background-color: var(--brand-light-blue);
+    border-radius: 25px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0px 16px 8px rgba(0,0,0,0.3);       /* Adds a shadow beneath the containers */
+}
+.price-amount {
+    font-family: "Figtree", sans-serif;
+    font-size: clamp(40px, 8vw, 72px);
+    font-weight: 700;
+    color: var(--brand-white);
+    margin-bottom: 25px;
+    line-height: 1;
+}
+.price-duration {
+    font-family: "Arial", sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--brand-dark-text);
+    margin-bottom: 15px;
+}
+.package-text {
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    color: var(--brand-dark-text);
+    margin-bottom: 25px;
+}
+
+.package-content .book-button {
+    margin: 0 0 30px 0;
+}
+.custom-note {
+    font-family: "Arial", sans-serif;
+    font-size: 14px !important;
+    color: var(--brand-dark-text);
+    margin-bottom: 0 !important;
+}
+
+/* ---- MOBILE OVERRIDE ---- */
+@media (max-width: 980px) {
+    .package-content {
+        flex-direction: column;                       /* Stacks the list on top of the card for phones! */
+        gap: 20px;
+    }
+    .package-pricing {
+        width: 100%;
+    }
+}
+
+/* ==========================================================================================================================
+                FEATURES SECTION (CSS GRID)
+============================================================================================================================= */
+.features-section {
+    background-color: var(--brand-white);
+    padding: 80px 20px;
+}
+
+/* ---- The Magic Grid Container ---- */
+/*
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);             
+    gap: 60px 40px;                                     
+    max-width: 1200px;
+    margin: 0 auto;                                     
+} */
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 60px 40px;                                     
+    max-width: 1200px;
+    margin: 0 auto;   
+}
+
+/* ---- Individual Feature Items ---- */
+.feature-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.feature-item h4 {
+    font-family: "Figtree", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--brand-dark-text);
+    margin-bottom: 15px;
+}
+
+.feature-item p {
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    color: var(--brand-light-text);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ---- MOBILE OVERRIDE - Responsive Grid: Tablet (2 Columns) ---- */
+/*
+@media (max-width: 980px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);          
+    }
+} */
+
+/* ---- MOBILE OVERRIDE - Responsive Grid: Mobile (1 Column) ---- */
+@media (max-width: 600px) {
+    .features-grid {
+        grid-template-columns: 1fr;                     /* Stacks everything into a single vertical column */
+        gap: 40px;                                      /* Tightens up the gap for mobile scrolling */
+    }
+}
+
+/* Code to Consider */
+/*.features-grid {
+    display: grid;
+     This replaces all your media query column changes 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    
+    gap: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}*/
+
+/* You only need a media query if you want to change the GAP size specifically
+@media (max-width: 600px) {
+    .features-grid {
+        gap: 40px; 
+    }
+} */
+
+/* ==========================================================================================================================
+                READY TO BOOK SECTION (CSS GRID -- in case of expanded packages)
+============================================================================================================================= */
+.ready-to-book {
+    background-color: var(--brand-light-grey);
+    padding: 40px 20px;
+}
+
+/* ---- Ready to Book Header ---- */
+.ready-to-book-header h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(22px, 7.5vw, 42px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 0px 16px;
+}
+
+.ready-to-book-header h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(14px, 6vw, 26px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin: 12px 12px;
+}
+/* ---- The Magic Grid Container ---- */
+.ready-to-book-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);              /* Creates 3 equal-width columns */
+    gap: 60px 40px;                                     /* 60px vertical gap between rows, 40px horizontal gap between columns */
+    max-width: 1200px;
+    margin: 0 auto;                                     /* Centers the whole grid block on the page */
+}
+
+/* ---- Ready to Book Items ---- */
+.ready-to-book-item {
+    text-align: center;
+    background-color: var(--brand-white);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0px 16px 8px rgba(0,0,0,0.3);         /* Adds a shadow beneath the containers */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ready-to-book-item h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 24px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 16px 8px;
+    width: 100%;
+}
+.ready-to-book-item h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(14px, 6vw, 22px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin: 0px 12px;
+}
+
+.ready-to-book-item .book-button {
+    margin-top: auto;
+    margin-bottom: 0px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.ready-to-book .contact-button {
+    width: 100%;
+    max-width: 375px;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brand-white);
+    background-color: var(--brand-blue);
+    border: none;
+    border-radius: 25px;
+    padding: 16px 36px;
+    margin: 42px auto 0px auto;
+    text-align: center;
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    gap: 8px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: var(--brand-dark-blue);
+}
+
+
+/* ---- MOBILE OVERRIDE - Responsive Grid: Mobile (1 Column) ---- */
+@media (max-width: 980px) {
+    .ready-to-book-grid {
+        grid-template-columns: 1fr;                     /* Stacks everything into a single vertical column */
+        max-width: 500px;
+        gap: 40px;                                      /* Tightens up the gap for mobile scrolling */
+    }
+
+}
+
+
+/* ==========================================================================================================================
+========================================== EFOIL & SEABOB RENTAL STYLES =====================================================          
+============================================================================================================================= */
+
+/* ==========================================================================================================================
+                BANNER SECTION
+============================================================================================================================= */
+.page-banner {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* --- Specific Background Images --- */
+.efoil-banner {
+    background-image: url('images/opua-banner-efoil.jpg'); 
+}
+.seabob-banner {
+    background-image: url('images/opua-banner-seabob.jpg'); 
+}
+
+/* ---- eFoil Specific Banner Text Style ---- */
+.efoil-banner .banner-content h1 {
+    font-size: clamp(38px, 6vw, 72px);
+}
+
+/* ==========================================================================================================================
+                EFOIL INFO & BOOKING SECTION
+============================================================================================================================= */
+.adventure-info {
+    padding: 60px 20px;
+    background-color: var(--brand-light-grey);
+}
+
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;                     /* Two equal columns */
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: start;                                 /* Prevents the card from stretching vertically */
+}
+
+/* ---- Left Column: Info Styling ---- */
+.info-column h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(22px, 6vw, 42px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    line-height: 1;                                     /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.info-column h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 24px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    line-height: 1;                                     /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin-bottom: 15px;
+}
+
+.info-column p {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    line-height: 1.5em;
+    color: var(--brand-dark-text);
+    margin-bottom: 10px;
+}   
+
+.feature-icon-list li,
+.location-list li  {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    text-decoration: none;
+    list-style-type: none;
+    color: var(--brand-dark-text);
+}  
+
+.highlight-list {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    text-decoration: none;
+    list-style-type: none;
+    color: var(--brand-dark-text);
+
+    width: fit-content;
+
+    background-color: var(--brand-white);
+    padding: 16px 20px;
+    border-radius: 25px;
+}  
+
+.feature-icon-list .material-symbols-rounded {
+    color: var(--brand-dark-blue);
+    font-size: 48px;
+    font-variation-settings: 'FILL' 1;
+}
+
+.highlight-item .material-symbols-rounded {
+    color: var(--brand-orange);
+    font-size: 24px;
+    font-variation-settings: 'FILL' 1;
+}
+
+.location-list .material-symbols-rounded {
+    color: var(--brand-dark-blue);
+    font-size: 22px;
+    font-variation-settings: 'FILL' 0;
+}
+
+.feature-icon-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.highlight-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 0px;
+    line-height: 1.6;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+
+    font-size: clamp(16px, 6vw, 20px);
+    color: var(--brand-dark-text);
+}
+
+.location-list li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.delivery-call {
+    color: var(--brand-light-text);
+    margin-top: 20px;
+    padding: 15px;
+    
+}
+
+.delivery-call a {
+    color: var(--brand-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.delivery-call a:hover {
+    color: var(--brand-dark-blue);
+    white-space: nowrap;
+}
+
+/* ---- Right Column: Booking Card Styling ---- */
+.booking-card {
+    background-color: var(--brand-white);
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 25px;
+    box-shadow: 0px 16px 8px rgba(0,0,0,0.3); 
+    overflow: hidden; 
+}
+
+.card-img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-body {
+    padding: 40px;
+}
+
+.card-body h4 {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--brand-dark-text);
+    margin-bottom: 12px;
+
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.card-header h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(24px, 6vw, 36px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    color: var(--brand-dark-text);
+
+    width: 100%;
+}
+
+.seabob-card-header h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(24px, 6vw, 32px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    color: var(--brand-dark-text);
+
+    width: 100%;
+}
+
+.duration-badge {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 1.6px;
+    color: var(--brand-white);
+
+    width: 50%;
+
+    background-color: var(--brand-dark-blue);
+    padding: 12px 14px;
+    border-radius: 20px;
+}
+
+.price-callout {
+    margin-bottom: 30px;
+    color: var(--brand-blue);
+}
+
+.price-callout h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 24px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+}
+
+.package-price h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 42px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+}
+
+.card-req-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 16px;
+
+    list-style: none;
+    padding: 0;
+
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    line-height: 1.5em;
+    color: var(--brand-dark-text);
+}
+
+.check-icon {
+    color: var(--brand-orange);
+    font-variation-settings: 'FILL' 1;
+}
+
+.card-body .book-button {
+    width: 100%;
+    text-align: center;
+    margin: 0px auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 1060px) {
+    .adventure-info {
+    padding: 60px 40px;
+    }
+
+    .split-layout {
+        grid-template-columns: 1fr; /* Stacks to one column on smaller screens */
+        gap: 30px;
+    }
+    
+    .card-body {
+         padding: 25px; /* Slightly tighter padding for phones */
+    }
+}
+
+/* ==========================================================================================================================
+                PROFESSIONAL ADVENTURE (EFOIL & SEABOB) EQUIPMENT SECTION
+============================================================================================================================= */
+.adventure-equipment {
+    background-color: var(--brand-white);
+    padding: 20px 20px;
+}
+
+/* ---- eFoil Equipment Header ---- */
+.adventure-equipment-header h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(22px, 6vw, 42px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                                      /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 0px 16px;
+}
+
+.adventure-equipment-header h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                                     /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin: 12px 12px;
+}
+/* ---- The Magic Grid Container ---- */
+.adventure-equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);              /* Creates 3 equal-width columns */
+    gap: 60px 40px;                                     /* 60px vertical gap between rows, 40px horizontal gap between columns */
+    max-width: 1200px;
+    margin: 0 auto;                                     /* Centers the whole grid block on the page */
+    margin-bottom: 40px;
+}
+
+/* ---- eFoil Equipment Items ---- */
+.adventure-equipment-item {
+    text-align: left;
+    background-color: var(--brand-white);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0px 8px 16px 2px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+ 
+
+.adventure-equipment-item h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 32px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    line-height: 1;                                     /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin-bottom: 16px;
+    width: 100%;
+    align-items: center;
+}
+
+.emoji-header li  {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    text-decoration: none;
+    list-style-type: none;
+    margin-bottom: 20px;
+    color: var(--brand-dark-text);
+    line-height: 1.2;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+} 
+
+.emoji-header-h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 32px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    line-height: 1;                                     /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    width: 100%;
+    align-items: center;
+}
+
+.emoji-header .material-symbols-rounded {
+    color: var(--brand-dark-blue);
+    font-size: 48px;
+    font-variation-settings: 'FILL' 1;
+}
+
+.adventure-equipment-item p {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    color: var(--brand-dark-text);
+    margin-bottom: 20px;
+}
+
+.adventure-equipment-list {
+    padding: 0; /* Removes the invisible browser indent */
+    margin: 0;
+}
+
+.adventure-equipment-list li {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    text-decoration: none;
+    list-style-type: none;
+    color: var(--brand-dark-text);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* ---- MOBILE OVERRIDE - Responsive Grid: Mobile (1 Column) ---- */
+@media (max-width: 980px) {
+    .adventure-equipment-grid {
+        grid-template-columns: 1fr;                     /* Stacks everything into a single vertical column */
+        max-width: 600px;
+        gap: 40px;                                      /* Tightens up the gap for mobile scrolling */
+    }
+
+}
+
+/* ==========================================================================================================================
+                BEAUTIFUL SARASOTA LOCATIONS SECTION
+============================================================================================================================= */
+.sarasota-locations {
+    background-color: var(--brand-light-grey);
+    padding: 20px 20px;
+}
+
+/* ---- eFoil Equipment Header ---- */
+.sarasota-locations-header h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(22px, 6vw, 42px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                                      /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 0px 16px;
+}
+
+.sarasota-locations-header h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                                     /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin: 12px 12px;
+}
+/* ---- The Magic Grid Container ---- */
+.sarasota-locations-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);              /* Creates 3 equal-width columns */
+    gap: 60px 40px;                                     /* 60px vertical gap between rows, 40px horizontal gap between columns */
+    max-width: 1200px;
+    margin: 0 auto;                                     /* Centers the whole grid block on the page */
+    margin-bottom: 40px;
+}
+
+/* ---- Sarasota Locations Items ---- */
+.sarasota-locations-item {
+    text-align: left;
+    background-color: var(--brand-white);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0px 8px 16px 2px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sarasota-locations-item h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 32px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    line-height: 1;                                     /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.sarasota-locations-item p {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    color: var(--brand-dark-text);
+    margin-bottom: 20px;
+}
+
+.sarasota-locations-list {
+    padding: 0; /* Removes the invisible browser indent */
+    margin: 0;
+}
+
+.sarasota-locations-list li {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: left;
+    text-decoration: none;
+    list-style-type: none;
+    color: var(--brand-dark-text);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.location-details {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    color: var(--brand-dark-text);
+    padding: 0px 20px;
+    margin-bottom: 20px;
+}
+
+/* ---- MOBILE OVERRIDE - Responsive Grid: Mobile (1 Column) ---- */
+@media (max-width: 980px) {
+    .sarasota-locations-grid {
+        grid-template-columns: 1fr;                     /* Stacks everything into a single vertical column */
+        max-width: 600px;
+        gap: 40px;                                      /* Tightens up the gap for mobile scrolling */
+    }
+
+}
+
+/* ==========================================================================================================================
+============================================== SEABOB RENTAL STYLES =========================================================          
+============================================================================================================================= */
+
+/* ==========================================================================================================================
+                HOW SEABOB ADVENTURES WORK SECTION
+============================================================================================================================= */
+
+.how-adventures-work {
+    background-color: var(--brand-light-grey);
+    padding: 40px 20px;
+}
+
+/* ---- How Seabob Adventures Work Header ---- */
+.how-adventures-work-header h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(22px, 7.5vw, 42px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 0px 16px;
+}
+
+.how-adventures-work-header h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(14px, 6vw, 26px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin: 12px 12px;
+}
+/* ---- The Magic Grid Container ---- */
+.how-adventures-work-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);              /* Creates 4 equal-width columns */
+    gap: 60px 40px;                                     /* 60px vertical gap between rows, 40px horizontal gap between columns */
+    max-width: 1200px;
+    margin: 0 auto;                                     /* Centers the whole grid block on the page */
+}
+
+/* ---- How Seabob Adventures Work Items ---- */
+.how-adventures-work-item {
+    text-align: center;
+    background-color: var(--brand-white);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0px 16px 8px rgba(0,0,0,0.3);         /* Adds a shadow beneath the containers */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.big-emoji {
+    color: var(--brand-dark-blue);
+    font-size: 72px;
+    font-variation-settings: 'FILL' 1;
+}
+
+.how-adventures-work-item h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 24px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                                        /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 16px 8px;
+    width: 100%;
+}
+.how-adventures-work-item p {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    line-height: 1.6;                                     /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 0px 12px;
+}
+
+
+/* ---- MOBILE OVERRIDE - Responsive Grid: Mobile (1 Column) ---- */
+@media (max-width: 1250px) {
+    .how-adventures-work-grid {
+        grid-template-columns: repeat(2, 1fr);           /* Stacks everything into a 2x2 vertical column */
+        max-width: 1000px;
+        gap: 40px;                                      /* Tightens up the gap for mobile scrolling */
+    }
+
+}
+
+@media (max-width: 660px) {
+    .how-adventures-work-grid {
+        grid-template-columns: 1fr;                     /* Stacks everything into a single vertical column */
+        max-width: 500px;
+        gap: 40px;                                      /* Tightens up the gap for mobile scrolling */
+    }
+
+}
+
+/* ==========================================================================================================================
+================================================= PACKAGES STYLES ===========================================================          
+============================================================================================================================= */
+.packages-banner {
+    background-image: url('images/opua-banner-package.jpg'); 
+}
+
+/* ==========================================================================================================================
+=================================================== FAQ STYLES ==============================================================          
+============================================================================================================================= */
+
+/* ---- FAQ Container ---- */
+.faq-container {
+    padding: 20px 20px 80px 20px;                   /* Breathing room above and below the section -- slightly smaller on top for page flow */
+    max-width: 1400px;                              /* Prevents the section from stretching too wide on massive monitors */
+    margin: 0 auto;                                 /* Centers the wrapper itself */
+}
+
+/* ---- FAQ Category Card (outer box) ---- */
+
+.faq-category-card {
+    background-color: var(--brand-white);
+    border-radius: 25px;
+    box-shadow: 0px 16px 8px rgba(0,0,0,0.1);
+    margin-bottom: 40px;                            /* Space between category blocks */
+    padding: 10px 20px;
+    overflow: hidden;
+}
+
+.faq-category-card .faq-category-title {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 32px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: left;
+    line-height: 1;                                       /* Relative line-height that scales with the font */
+    color: var(--brand-dark-blue);
+    margin: 20px 8px;
+    width: 100%;
+}
+
+
+/* ---- Individual FAQ Cards */
+.faq-item {
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+/* Hide default HTML summary triangle */
+.faq-item summary::-webkit-details-marker {display: none;}
+.faq-item summary {list-style: none;}
+
+/* ---- FAQ Question Row (Clickable Area) ---- */
+.faq-question {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 25px 20px 0px;
+
+    font-family: "Arial", sans-serif;
+    font-size: clamp(18px, 4vw, 20px);
+    color: var(--brand-dark-text);
+    cursor: pointer;                                    /* Turns the mouse into a clicking hand */
+}
+
+/* ---- The Answer Text ---- */
+.faq-answer {
+    padding: 0px 25px 25px 30px;                        /* 0 top padding to sit right under the question */
+}
+
+.faq-answer p {
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--brand-dark-text);
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.faq-answer p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---- Magic Arrow Rotation ---- */
+.faq-arrow {
+    transition: transform 0.3 ease;
+    color: var(--brand-orange);
+    font-size: 28px;
+}
+
+details[open] .faq-arrow {
+    transform: rotate(90deg);
+}

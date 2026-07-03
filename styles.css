@@ -364,14 +364,17 @@ body {
     }
 
     .header-actions {
-        flex: intial;
+        flex: 1;
         justify-content: center;
-        margin: 0 auto;
+        margin: 0 15px;
         gap: 10px;
     }
 
     .header-book {
         padding: 10px 20px;
+        width: 100%;
+        max-width: 300px;
+        box-sizing: border-box;
     }
 }
 

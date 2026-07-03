@@ -423,6 +423,7 @@ body {
 
 .social-icons {
     display: flex;
+    font-size: 18px;
     justify-content: center;
     gap: 12px;
 }
@@ -609,7 +610,7 @@ body {
 
 .banner-content h1 {
     font-family: "Figtree-700", sans-serif;
-    font-size: clamp(22px, 6vw, 44px);
+    font-size: clamp(22px, 6vw, 64px);
     font-weight: 700;
     font-style: normal;
     line-height: 1.2;                               /* Relative line-height that scales with the font */
@@ -617,7 +618,11 @@ body {
     margin: 16px 16px;
 }
 
-.banner-content .contact-banner-h1 {
+.efoil-banner .banner-content h1 {
+    font-size: clamp(38px, 6vw, 64px);
+}
+
+.contact-banner .banner-content h1{
     font-size: clamp(32px, 6vw, 72px);
 }
 
@@ -646,7 +651,8 @@ body {
     margin: 0px 18px;
 }
 
-.banner-content .faq-banner-p {
+.contact-banner .banner-content p,
+.faq-banner .banner-content p {
     font-family: "Arial", sans-serif;
     font-size: 18px;
     font-weight: 400;
@@ -663,14 +669,20 @@ body {
 }
 
 /* BANNER - MOBILE OVERRIDES */
-@media (min-width:320px) {
-    .hide-at-320 {
-        display: none;
+
+.break-mobile,
+.break-tablet {
+    display:none;
+}
+
+@media (max-width: 1835px) and (min-width: 809px) {
+    .break-tablet {
+        display: block;
     }
 }
-@media (min-width:1125px) {
-    .hide-at-1125 {
-        display: none;
+@media (max-width: 808px) {
+    .break-mobile {
+        display: block;
     }
 }
 
@@ -1147,6 +1159,10 @@ body {
     padding: 40px 20px;
 }
 
+.ready-to-book.white-variant {
+    background-color: var(--brand-white);
+}
+
 /* ---- Ready to Book Header ---- */
 .ready-to-book-header h1 {
     font-family: "Figtree-700", sans-serif;
@@ -1172,7 +1188,7 @@ body {
 /* ---- The Magic Grid Container ---- */
 .ready-to-book-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);              /* Creates 3 equal-width columns */
+    grid-template-columns: repeat(4, 1fr);              /* Creates 3 equal-width columns */
     gap: 60px 40px;                                     /* 60px vertical gap between rows, 40px horizontal gap between columns */
     max-width: 1200px;
     margin: 0 auto;                                     /* Centers the whole grid block on the page */
@@ -1185,10 +1201,38 @@ body {
     border-radius: 25px;
     padding: 20px;
     box-shadow: 0px 16px 8px rgba(0,0,0,0.3);         /* Adds a shadow beneath the containers */
+    align-items: center;
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;                                       /* Ensures all cards are the same height */
+}
+
+.card-top,
+.card-bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-middle {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Centers the content vertically within the middle section */
+}
+
+.ready-to-book.white-variant .ready-to-book-item {
+    text-align: center;
+    background-color: var(--brand-white);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0px 8px 16px 2px rgba(0, 0, 0, 0.3);         /* Adds a shadow beneath the containers */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
+
 
 .ready-to-book-item h2 {
     font-family: "Figtree-700", sans-serif;
@@ -1207,7 +1251,7 @@ body {
     font-weight: 700;
     font-style: normal;
     text-align: center;
-    line-height: 1;                               /* Relative line-height that scales with the font */
+    line-height: 1.6;                               /* Relative line-height that scales with the font */
     color: var(--brand-blue);
     margin: 0px 12px;
 }
@@ -1250,7 +1294,25 @@ body {
 
 
 /* ---- MOBILE OVERRIDE - Responsive Grid: Mobile (1 Column) ---- */
-@media (max-width: 980px) {
+/* @media (max-width: 980px) {
+    .ready-to-book-grid {
+        grid-template-columns: 1fr;                     
+        max-width: 500px;
+        gap: 40px;                                     
+    }
+
+} */
+
+@media (max-width: 1250px) {
+    .ready-to-book-grid {
+        grid-template-columns: repeat(2, 1fr);           /* Stacks everything into a 2x2 vertical column */
+        max-width: 1000px;
+        gap: 40px;                                      /* Tightens up the gap for mobile scrolling */
+    }
+
+}
+
+@media (max-width: 660px) {
     .ready-to-book-grid {
         grid-template-columns: 1fr;                     /* Stacks everything into a single vertical column */
         max-width: 500px;
@@ -1258,7 +1320,6 @@ body {
     }
 
 }
-
 
 /* ==========================================================================================================================
 ========================================== EFOIL & SEABOB RENTAL STYLES =====================================================          
@@ -1287,10 +1348,8 @@ body {
     background-image: url('images/opua-banner-seabob.jpg'); 
 }
 
-/* ---- eFoil Specific Banner Text Style ---- */
-.efoil-banner .banner-content h1 {
-    font-size: clamp(38px, 6vw, 72px);
-}
+
+
 
 /* ==========================================================================================================================
                 EFOIL INFO & BOOKING SECTION
@@ -1968,9 +2027,14 @@ body {
 =================================================== FAQ STYLES ==============================================================          
 ============================================================================================================================= */
 
+/* ---- FAQ Banner ---- */
+.faq-banner {
+    background-image: url('images/opua-banner-package.jpg'); 
+}
+
 /* ---- FAQ Container ---- */
 .faq-container {
-    padding: 20px 20px 80px 20px;                   /* Breathing room above and below the section -- slightly smaller on top for page flow */
+    padding: 40px 20px 40px 20px;                   /* Breathing room above and below the section -- slightly smaller on top for page flow */
     max-width: 1400px;                              /* Prevents the section from stretching too wide on massive monitors */
     margin: 0 auto;                                 /* Centers the wrapper itself */
 }
@@ -1984,6 +2048,10 @@ body {
     margin-bottom: 40px;                            /* Space between category blocks */
     padding: 10px 20px;
     overflow: hidden;
+}
+
+.faq-category-card:last-child {
+    margin-bottom: 0;                               /* Removes the bottom margin for the last category block */
 }
 
 .faq-category-card .faq-category-title {
@@ -2052,4 +2120,115 @@ body {
 
 details[open] .faq-arrow {
     transform: rotate(90deg);
+}
+
+/* ==========================================================================================================================
+                STILL HAVE QUESTIONS?
+============================================================================================================================= */
+
+.still-have-questions {
+    background-color: var(--brand-light-grey);
+    padding: 40px 20px;
+}
+
+/* ---- Still Have Questions Header ---- */
+
+
+.still-have-questions-header h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(22px, 7.5vw, 42px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 0px 16px;
+}
+
+.still-have-questions-header h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(14px, 6vw, 26px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                               /* Relative line-height that scales with the font */
+    color: var(--brand-blue);
+    margin: 12px 12px;
+}
+
+/* ---- The Magic Grid Container ---- */
+.still-have-questions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);              /* Creates 4 equal-width columns */
+    gap: 60px 40px;                                     /* 60px vertical gap between rows, 40px horizontal gap between columns */
+    max-width: 1200px;
+    margin: 0 auto;                                     /* Centers the whole grid block on the page */
+}
+
+/* ---- Still Have Questions Items ---- */
+.still-have-questions-item {
+    text-align: center;
+    background-color: var(--brand-white);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0px 16px 8px rgba(0,0,0,0.3);         /* Adds a shadow beneath the containers */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.big-emoji {
+    color: var(--brand-dark-blue);
+    font-size: 72px;
+    font-variation-settings: 'FILL' 1;
+}
+
+.still-have-questions-item h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(20px, 6vw, 32px);
+    font-weight: 700;
+    font-style: normal;
+    text-align: center;
+    line-height: 1;                                        /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 16px 8px;
+    width: 100%;
+}
+.still-have-questions-item p {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(14px, 6vw, 18px);
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    line-height: 1.6;                                     /* Relative line-height that scales with the font */
+    color: var(--brand-dark-text);
+    margin: 0px 12px;
+}
+
+.still-have-questions-item .subtext {
+    font-size: clamp(14px, 6vw, 16px);          /* Smaller than the text above */
+    color: var(--brand-dark-blue);                   /* Secondary color */
+    margin-top: 10px;                            /* Just a tiny bit of space below the main text */
+    font-style: italic;                         /* Nice and slanted */
+}
+
+
+
+/* ---- MOBILE OVERRIDE - Responsive Grid: Mobile (1 Column) ---- */
+
+@media (max-width: 980px) {
+    .still-have-questions-grid {
+        grid-template-columns: 1fr;                     /* Stacks everything into a single vertical column */
+        max-width: 500px;
+        gap: 40px;                                      /* Tightens up the gap for mobile scrolling */
+    }
+
+}
+
+/* ==========================================================================================================================
+=================================================== CONTACT STYLES ==============================================================          
+============================================================================================================================= */
+
+.contact-banner {
+    background-image: url('images/opua-banner-package.jpg'); 
 }

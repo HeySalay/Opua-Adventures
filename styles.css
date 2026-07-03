@@ -358,11 +358,22 @@ body {
 }
 
 /* HEADER BOOK NOW - MOBILE OVERRIDE */
-/*@media (max-width: 420px) {
-    .header-book {
-        display: none;
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0;
     }
-}*/
+
+    .header-actions {
+        flex: intial;
+        justify-content: center;
+        margin: 0 auto;
+        gap: 10px;
+    }
+
+    .header-book {
+        padding: 10px 20px;
+    }
+}
 
 /* ==========================================================================================================================
                     CUSTOM FOOTER

@@ -627,7 +627,7 @@ body {
     font-size: clamp(22px, 6vw, 64px);
     font-weight: 700;
     font-style: normal;
-    line-height: 1.2;                               /* Relative line-height that scales with the font */
+    line-height: 1;                               /* Relative line-height that scales with the font */
     color: var(--brand-white);
     margin: 16px 16px;
 }
@@ -1362,14 +1362,11 @@ body {
     background-image: url('images/opua-banner-seabob.jpg'); 
 }
 
-
-
-
 /* ==========================================================================================================================
                 EFOIL INFO & BOOKING SECTION
 ============================================================================================================================= */
 .adventure-info {
-    padding: 60px 20px;
+    padding: 40px 20px;
     background-color: var(--brand-light-grey);
 }
 
@@ -2245,4 +2242,220 @@ details[open] .faq-arrow {
 
 .contact-banner {
     background-image: url('images/opua-banner-package.jpg'); 
+}
+
+.contact-section {
+    background-color: var(--brand-light-grey);
+    padding: 40px 20px;
+}
+
+/* ----------------- 
+    List Elements
+-------------------- */
+
+.contact-info-wrapper {
+    color: var(--brand-dark-text);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-list {
+    list-style: none; /* Removes default bullet points */
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.contact-list .material-symbols-rounded {
+    color: var(--brand-dark-blue);
+    font-size: 32px;
+    margin-top: -2px; /* Moves icon up slightly to perfectly align with the text */
+}
+
+.contact-list-content {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.contact-list-content strong {
+    font-family: "Figtree", sans-serif;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.contact-list-content p, 
+.contact-list-content a {
+    font-family: "Arial", sans-serif;
+    color: var(--brand-blue);
+    font-size: 18px;
+    text-decoration: none;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.contact-list-content a:hover {
+    text-decoration: none;
+    color: var(--brand-dark-blue);
+}
+
+.contact-policy {
+    margin: 20px 0px;
+}
+.contact-policy p {
+    font-family: "Arial", sans-serif;
+    color: var(--brand-light-text);
+    font-size: 12px;
+    text-decoration: none;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.contact-policy a {
+    color: var(--brand-blue);
+    text-decoration: none;
+}
+
+.contact-policy a:hover {
+    text-decoration: none;
+    color: var(--brand-dark-blue);
+}
+
+/* ----------------- 
+    Form Elements
+-------------------- */
+
+.card-body.contact-card {
+    padding: 40px 40px 10px 40px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin-top: 5px;
+}
+.form-group:first-child {
+    margin-top: 0px;
+}
+
+.form-group label {
+    font-family: "Trebuchet MS", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--brand-dark-text);
+    text-transform: uppercase;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: sans-serif;
+    font-size: 16px;
+    box-sizing: border-box; /* Prevents padding from breaking width */
+    transition: border-color 0.3s ease;
+}
+
+/* Turns the border blue when they click inside the box */
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--brand-blue);
+    outline: none;
+}
+
+.submit-button {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brand-white);
+    background-color: var(--brand-blue);
+    border: none;
+    border-radius: 25px;
+    padding: 16px 36px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================================================================
+==================================== PRIVACY POLICY & TERMS AND CONDITIONS STYLES ===========================================          
+============================================================================================================================= */
+.legal-section {
+    background-color: var(--brand-light-grey);
+    padding: 40px 20px;
+}
+
+.legal-section h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(32px, 6vw, 48px);
+    color: var(--brand-dark-text);
+    font-style: normal;
+    text-align: left;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.legal-section h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(20px, 6vw, 32px);
+    color: var(--brand-dark-text);
+    font-style: normal;
+    text-align: left;
+    line-height: 1;
+    margin: 30px 0px 20px;
+}
+
+.legal-section h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 6vw, 28px);
+    color: var(--brand-dark-text);
+    font-style: normal;
+    text-align: left;
+    line-height: 1;
+    margin: 20px 16px 15px;
+}
+
+.legal-section p,
+.legal-definitions {
+    font-family: "Arial", sans-serif;
+    font-size: clamp(12px, 6vw, 18px);
+    color: var(--brand-dark-text);
+    font-style: normal;
+    text-align: left;
+    margin: 0px 16px 10px;
+}
+
+.legal-definitions li {
+    list-style: circle;
+    margin: 0px 20px 10px;
+}
+
+.legal-section a {
+    color: var(--brand-blue);
+    text-decoration: none;
+}
+
+.legal-section a:hover {
+    text-decoration: none;
+    color: var(--brand-dark-blue);
 }

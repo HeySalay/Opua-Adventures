@@ -2459,3 +2459,224 @@ details[open] .faq-arrow {
     text-decoration: none;
     color: var(--brand-dark-blue);
 }
+
+/* ==========================================================================================================================
+===================================================== BLOG STYLES ===========================================================          
+============================================================================================================================= */
+.blog-banner {
+    background-image: url('images/opua-banner-efoil.jpg'); 
+}
+
+.blog-section {
+    background-color: var(--brand-light-grey);
+    padding: 40px 20px;
+}
+
+.blog-header h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(32px, 6vw, 48px);
+    color: var(--brand-dark-text);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+/* The Grid Container */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Matches the feature-grid layout! */
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual Blog Cards */
+.blog-card {
+    background-color: var(--brand-white);
+    border-radius: 25px;
+    box-shadow: 0px 16px 8px rgba(0,0,0,0.1); /* Soft shadow like the adventure containers */
+    overflow: hidden; /* Keeps the image inside the rounded corners */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px); /* Cute hover float effect */
+    box-shadow: 0px 24px 16px rgba(0,0,0,0.15);
+}
+
+.blog-card-img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover; /* So images never stretch weirdly */
+}
+
+.blog-card-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Pushes the button to the bottom even if text length varies */
+    text-align: left;
+}
+
+.blog-date {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--brand-orange);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+}
+
+.blog-card-body h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(20px, 4vw, 26px);
+    color: var(--brand-dark-blue);
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+}
+
+.blog-card-body p {
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    color: var(--brand-light-text);
+    line-height: 1.6;
+    margin: 0 0 25px 0;
+}
+
+/* Overriding the book button slightly just to fit perfectly in the card */
+.blog-card-body .book-button {
+    margin-top: auto; 
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog-card-body .book-button .material-symbols-rounded {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover .book-button .material-symbols-rounded {
+    transform: translateX(5px); /* Arrow slides over on hover */
+}
+
+/* ----------------- 
+    Article Styles
+-------------------- */
+.article-section {
+    background-color: var(--brand-white);
+    padding: 40px 20px 100px 20px;
+}
+
+.article-container {
+    max-width: 800px; /* Keeps lines of text short enough to be easy to read! */
+    margin: 0 auto;
+}
+
+.back-to-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--brand-blue);
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    transition: color 0.3s ease;
+}
+
+.back-to-blog:hover {
+    color: var(--brand-orange);
+}
+
+.article-date {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--brand-orange);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.article-container h1 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(32px, 6vw, 42px);
+    color: var(--brand-dark-text);
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+.article-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-bottom: 40px;
+    box-shadow: 0px 16px 8px rgba(0,0,0,0.1);
+}
+
+/* --- Article Typography --- */
+.article-content h2 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(24px, 5vw, 32px);
+    color: var(--brand-dark-blue);
+    margin: 20px 0 10px 0;
+    line-height: 1.2;
+}
+
+.article-content p {
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    color: var(--brand-dark-text);
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.article-content ul {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+
+.article-content li {
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    color: var(--brand-dark-text);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+
+
+/* A nice little callout box for the bottom of the article */
+.article-callout {
+    background-color: var(--brand-light-grey);
+    border-left: 5px solid var(--brand-orange);
+    padding: 30px;
+    border-radius: 0 25px 25px 0;
+    margin-top: 50px;
+}
+
+.article-callout p {
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.article-content a,
+.article-callout a {
+    color: var(--brand-blue);
+    text-decoration: none;
+}
+
+/* Link Styles */
+.article-content a:hover,
+.article-callout a:hover {
+    text-decoration: none;
+    color: var(--brand-dark-blue);
+}

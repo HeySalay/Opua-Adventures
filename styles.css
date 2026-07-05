@@ -2631,6 +2631,14 @@ details[open] .faq-arrow {
     line-height: 1.2;
 }
 
+.article-content h3 {
+    font-family: "Figtree-700", sans-serif;
+    font-size: clamp(18px, 5vw, 20px);
+    color: var(--brand-blue);
+    margin: 20px 0 10px 0;
+    line-height: 1.2;
+}
+
 .article-content p {
     font-family: "Arial", sans-serif;
     font-size: 18px;

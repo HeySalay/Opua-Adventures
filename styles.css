@@ -1356,10 +1356,10 @@ body {
 
 /* --- Specific Background Images --- */
 .efoil-banner {
-    background-image: url('images/opua-banner-efoil.jpg'); 
+    background-image: url('/images/opua-banner-efoil.jpg'); 
 }
 .seabob-banner {
-    background-image: url('images/opua-banner-seabob.jpg'); 
+    background-image: url('/images/opua-banner-seabob.jpg'); 
 }
 
 /* ==========================================================================================================================
@@ -2031,7 +2031,7 @@ body {
 ================================================= PACKAGES STYLES ===========================================================          
 ============================================================================================================================= */
 .packages-banner {
-    background-image: url('images/opua-banner-package.jpg'); 
+    background-image: url('/images/opua-banner-package.jpg'); 
 }
 
 /* ==========================================================================================================================
@@ -2040,7 +2040,7 @@ body {
 
 /* ---- FAQ Banner ---- */
 .faq-banner {
-    background-image: url('images/opua-banner-package.jpg'); 
+    background-image: url('/images/opua-banner-package.jpg'); 
 }
 
 /* ---- FAQ Container ---- */
@@ -2241,7 +2241,7 @@ details[open] .faq-arrow {
 ============================================================================================================================= */
 
 .contact-banner {
-    background-image: url('images/opua-banner-package.jpg'); 
+    background-image: url('/images/opua-banner-package.jpg'); 
 }
 
 .contact-section {
@@ -2464,7 +2464,7 @@ details[open] .faq-arrow {
 ===================================================== BLOG STYLES ===========================================================          
 ============================================================================================================================= */
 .blog-banner {
-    background-image: url('images/opua-banner-efoil.jpg'); 
+    background-image: url('/images/opua-banner-efoil.jpg'); 
 }
 
 .blog-section {

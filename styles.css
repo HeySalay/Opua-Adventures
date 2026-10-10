@@ -2332,7 +2332,7 @@ details[open] .faq-arrow {
 }
 
 .contact-policy {
-    margin: 20px 0px;
+    margin: 20px 0 0 0;
 }
 .contact-policy p {
     font-family: "Arial", sans-serif;
@@ -2353,13 +2353,13 @@ details[open] .faq-arrow {
     color: var(--brand-dark-blue);
 }
 
-h-captcha {
-    width: 100%;
-}
-
 @media (max-width: 1060px){
     .desktop-policy {
         display: none;
+        
+    }
+    .contact-policy {
+        margin-top: 40px;
     }
     .contact-list li:last-child {
         margin-bottom: 0;

@@ -118,8 +118,8 @@
                             </div>
                         </li>
                     </ul>
-                    <hr>
-                    <div class="contact-policy">
+                    <hr class="desktop-policy">
+                    <div class="contact-policy desktop-policy">
                         <p><strong>Data Sharing</strong></p>
                         <p>Customer data is not shared with 3rd parties for promotional or marketing purposes. Mobile opt-in and consent are never shared with anyone for any purpose. Any information sharing that may be mentioned elsewhere in this policy excludes mobile opt-in data.</p>
                         <br>
@@ -132,24 +132,27 @@
                     <div class="booking-card">
                         
                         <div class="card-body contact-card">
-                           <form class="contact-form" action="#" method="post">
+                           <form class="contact-form" action="https://api.web3forms.com/submit" method="post">
+                                <input type="hidden" name="access_key" value="013717ed-f805-425e-a6b5-88af8f5a965a">
+                                <input type="hidden" name="subject" value="New message from opuaadventures.com">
+                                <input type="hidden" name="redirect" value="https://opuaadventures.com/opua-adventures-contact/thank-you/">
                                 <div class="form-group">
                                     <label for="name">Name</label><br>
                                     <input type="text" id="name" name="name" placeholder="Name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label><br>
-                                    <input type="text" id="email" name="email" placeholder="Email" required>
+                                    <input type="email" id="email" name="email" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone</label><br>
-                                    <input type="text" id="phone" name="phone" placeholder="Phone" required>
+                                    <input type="tel" id="phone" name="phone" placeholder="Phone" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Message</label><br>
-                                    <textarea type="message" id="message" name="message" placeholder="Message" required></textarea>
+                                    <textarea id="message" name="message" placeholder="Message" required></textarea>
                                 </div>
-                                    <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off">
+                                    <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
 
                                 <button type="submit" class="submit-button"><span class="material-symbols-rounded bookmark-icon">send</span>Submit Form</button>
                            </form>
@@ -157,7 +160,15 @@
                            <br>
 
                         </div>
+                        
                 </div>
+            </div>
+            <div class="contact-policy mobile-policy">
+                <p><strong>Data Sharing</strong></p>
+                <p>Customer data is not shared with 3rd parties for promotional or marketing purposes. Mobile opt-in and consent are never shared with anyone for any purpose. Any information sharing that may be mentioned elsewhere in this policy excludes mobile opt-in data.</p>
+                <br>
+                <p><strong>Messaging Terms and Conditions</strong></p>
+                <p>By providing your phone number and agreeing to receive texts, you consent to receive text messages from Opua Adventures from <a href="tel:+19415991234">(941)&nbsp;599-1234</a> regarding booking notifications and customer care. Consent is not a condition of purchase. Message frequency varies. Message & data rates may apply. You can reply STOP to unsubscribe at any time or HELP for assistance. You can also contact us at <a href="tel:+19415991234">(941)&nbsp;599-1234</a> or <a href="mailto:info@opuaadventures.com">info@opuaadventures.com</a>. Mobile opt-in information is never shared with third parties.</p>
             </div>
         </section>
 

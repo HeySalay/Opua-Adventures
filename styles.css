@@ -2328,6 +2328,17 @@ details[open] .faq-arrow {
     color: var(--brand-dark-blue);
 }
 
+@media (max-width: 1060px){
+    .desktop-policy {
+        display: none;
+    }
+}
+@media (min-width: 1060px){
+    .mobile-policy {
+        display: none;
+    }
+}
+
 /* ----------------- 
     Form Elements
 -------------------- */

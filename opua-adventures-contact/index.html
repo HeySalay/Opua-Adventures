@@ -86,7 +86,7 @@
         <section class="page-banner contact-banner">
             <div class="banner-overlay"></div>
             <div class="banner-content">
-                <h1><strong>OPUA ADVENTURES</strong></h1>
+                <h1><strong>Contact</strong></h1>
                 <h3>Have more questions? Contact us!</h3>
                 <br>
                 <p>Call us or send us a message below!</p>
@@ -100,6 +100,7 @@
 
                 <div class="info-column contact-info-wrapper">
                     <h1>Contact Us Today</h1>
+                    <img src="/images/opua-adventures.png" class="contact-logo" alt="Opua Adventures Logo">
                     <p>Experience the thrill of gliding above the water on our e-foils or exploring below the waves on the sun coast with our Seabobs. Come make a memory today with Opua Adventures. Have a question? Feel free to send us a message or give us a call! <strong>Don't be shy to contact us!</strong></p>
                     <br>
                     <ul class="contact-list">
@@ -128,7 +129,7 @@
                     </div>
                 </div>
 
-                <div class="card-column">
+                <div class="card-column contact-column">
                     <div class="booking-card">
                         
                         <div class="card-body contact-card">
@@ -146,21 +147,28 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone</label><br>
-                                    <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+                                    <input type="tel" id="phone" name="phone" placeholder="Phone">
                                 </div>
                                 <div class="form-group">
                                     <label for="message">Message</label><br>
                                     <textarea id="message" name="message" placeholder="Message" required></textarea>
                                 </div>
                                     <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
-
-                                <button type="submit" class="submit-button"><span class="material-symbols-rounded bookmark-icon">send</span>Submit Form</button>
+                                <div class="sms-consent">
+                                    <input type="checkbox" name="sms_consent" value="Yes - customer agreed to receive texts" id="sms_consent">
+                                    <label for="sms_consent">
+                                        I agree to receive text messages from Opua Adventures at the phone number provided about booking notifications and customer care. Message frequency varies. Message &amp; data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. Mobile opt-in information is never shared with third parties. See our <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-and-conditions/">Terms &amp; Conditions</a>.
+                                    </label>
+                                    
+                                </div>
+                                <div class="h-captcha" data-captcha="true"></div>
+                                <button type="submit" class="submit-button"><span class="material-symbols-rounded bookmark-icon">send</span>Submit Form</button>     
                            </form>
 
                            <br>
 
                         </div>
-                        
+                    </div>   
                 </div>
             </div>
             <div class="contact-policy mobile-policy">
@@ -367,7 +375,18 @@
                 behavior: "smooth" // This makes it glide up elegantly instead of instantly teleporting!
                 });
             });
-        </script>   
+        </script>
+        <script>
+        // [SMS Consent -- require a phone number only when the texting box is checked]
+            // 1. Grab the checkbox and the phone field from the HTML
+            const smsConsent = document.getElementById("sms_consent");
+            const phoneInput = document.getElementById("phone");
+            // 2. Whenever the checkbox changes, make the phone field required (or not)
+            smsConsent.addEventListener("change", () => {
+            phoneInput.required = smsConsent.checked;
+            });
+        </script>
+        <script src="https://web3forms.com/client/script.js" async defer></script>  
     </body>
 
 </html>

@@ -1379,6 +1379,10 @@ body {
     align-items: start;                                 /* Prevents the card from stretching vertically */
 }
 
+.split-layout > * {
+    min-width: 0;   /* lets both columns shrink to fit small screens */
+}
+
 /* ---- Left Column: Info Styling ---- */
 .info-column h1 {
     font-family: "Figtree-700", sans-serif;
@@ -2249,6 +2253,18 @@ details[open] .faq-arrow {
     padding: 40px 20px;
 }
 
+.contact-logo {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    padding: 10px;
+    margin: 0 auto 20px;
+    align-self: center;   /* stops the flexbox from stretching it */
+    flex-shrink: 0;       /* stops the flexbox from squishing it */
+    object-fit: contain;
+}
+
 /* ----------------- 
     List Elements
 -------------------- */
@@ -2263,7 +2279,7 @@ details[open] .faq-arrow {
 .contact-list {
     list-style: none; /* Removes default bullet points */
     padding: 0;
-    margin: 0 0 20px 0;
+    margin: 0;
 }
 
 .contact-list li {
@@ -2306,6 +2322,15 @@ details[open] .faq-arrow {
     color: var(--brand-dark-blue);
 }
 
+.sms-consent {
+    font-family: "Arial", sans-serif;
+    color: var(--brand-light-text);
+    font-size: 12px;
+    text-decoration: none;
+    margin: 0;
+    line-height: 1.5;
+}
+
 .contact-policy {
     margin: 20px 0px;
 }
@@ -2328,14 +2353,25 @@ details[open] .faq-arrow {
     color: var(--brand-dark-blue);
 }
 
+h-captcha {
+    width: 100%;
+}
+
 @media (max-width: 1060px){
     .desktop-policy {
         display: none;
     }
+    .contact-list li:last-child {
+        margin-bottom: 0;
+    }
+     
 }
 @media (min-width: 1060px){
     .mobile-policy {
         display: none;
+    }
+    .contact-column {
+        margin-top: 20px;
     }
 }
 

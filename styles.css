@@ -384,7 +384,7 @@ body {
 .custom-footer {
     background-color: var(--brand-dark-text);
     color: var(--brand-white);
-    padding: 60px 20px;
+    padding: 60px 20px 20px;
     font-family: "Arial", sans-serif;
     font-size: 15px;
 }
@@ -421,6 +421,10 @@ body {
 .custom-footer p {
     line-height: 1.6;
     margin-bottom: 25px;
+}
+
+.custom-footer p:last-child {
+    margin-bottom: 0;                                   /* Removes the bottom margin from the last paragraph in each column */
 }
 
 .custom-footer strong {
@@ -480,6 +484,14 @@ body {
 .custom-footer .blue-link:hover,
 .footer-legal a:hover {
     color: var(--brand-orange);
+}
+
+/* ---- Copyright ---- */
+.footer-copyright {
+    text-align: center;
+    font-size: 14px;
+    margin: 0 auto;
+    color: var(--brand-light-text);
 }
 
 /* ---- Responsive: Tablet & Mobile ---- */
@@ -2190,6 +2202,16 @@ details[open] .faq-arrow {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.still-have-questions-item a {
+    text-decoration: none;
+    color: var(--brand-blue);
+    font-weight: 700;
+}
+
+.still-have-questions-item a:hover {
+    text-decoration: underline;
 }
 
 .big-emoji {

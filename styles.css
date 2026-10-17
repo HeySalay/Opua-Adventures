@@ -229,7 +229,7 @@ body {
 }
 
 /* HEADER [header, hamburger, navbar] - MOBILE OVERRIDE */
-@media (max-width: 975px) {
+@media (max-width: 1105px) {
     .site-header {
         display: flex;                              /* Switches back to Flexbox for mobile menu layout! */
         justify-content: space-between;
@@ -299,7 +299,7 @@ body {
     }
 }
 
-@media (max-width:975px) {
+@media (max-width:1105px) {
     .header-actions {
         margin-left: auto;                          /* Pushes both the actions AND the hamburger to the right! */
         margin-right: 15px;                         /* Adds a little breathing room between the Book button and the Hamburger */
@@ -327,7 +327,7 @@ body {
 
 
 /* HEADER PHONE - MOBILE OVERRIDE */
-@media (max-width: 1175px) {
+@media (max-width: 1446px) {
     .header-phone {
         display: none;
     }
@@ -907,7 +907,7 @@ body {
 .round-container {
     flex: 1;                                        /* Makes both containers take up equal space */
     min-width: 0;
-    max-width: 800px;                               
+    max-width: 600px;                               
     border-radius: 25px;                            /* Rounds the corners evenly witout stretching */
     background-color: var(--brand-white);                    
     
@@ -957,7 +957,7 @@ body {
 }
 
 /* ROUND CONTAINER - MOBILE OVERRIDES */
-@media (max-width: 980px) {
+@media (max-width: 1340px) {
     .adventure-content {
         flex-direction: column;                     /* Stacks the rounded squares vertically! */
         align-items: center;                        /* Keeps the stacked rounded squares in the middle of the screen */
@@ -1203,7 +1203,7 @@ body {
 
 .ready-to-book-header h3 {
     font-family: "Figtree-700", sans-serif;
-    font-size: clamp(14px, 6vw, 26px);
+    font-size: clamp(14px, 6vw, 22px);
     font-weight: 700;
     font-style: normal;
     text-align: center;
@@ -1214,8 +1214,8 @@ body {
 /* ---- The Magic Grid Container ---- */
 .ready-to-book-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);              /* Creates 3 equal-width columns */
-    gap: 60px 40px;                                     /* 60px vertical gap between rows, 40px horizontal gap between columns */
+    grid-template-columns: repeat(3, 1fr);              /* Creates 6 equal-width columns */
+    gap: 40px 20px;                                     /* 60px vertical gap between rows, 40px horizontal gap between columns */
     max-width: 1200px;
     margin: 0 auto;                                     /* Centers the whole grid block on the page */
 }
@@ -1262,7 +1262,7 @@ body {
 
 .ready-to-book-item h2 {
     font-family: "Figtree-700", sans-serif;
-    font-size: clamp(18px, 6vw, 24px);
+    font-size: clamp(18px, 6vw, 22px);
     font-weight: 700;
     font-style: normal;
     text-align: center;
@@ -1372,6 +1372,9 @@ body {
 }
 .seabob-banner {
     background-image: url('/images/opua-banner-seabob.jpg'); 
+}
+.tour-banner {
+    background-image: url('/images/opua-banner-boat-tour.jpg'); 
 }
 
 /* ==========================================================================================================================
@@ -1665,7 +1668,7 @@ body {
 /* --- Mobile Responsiveness --- */
 @media (max-width: 1060px) {
     .adventure-info {
-    padding: 60px 40px;
+        padding: 60px 40px;
     }
 
     .split-layout {
@@ -1700,7 +1703,7 @@ body {
 
 .adventure-equipment-header h3 {
     font-family: "Figtree-700", sans-serif;
-    font-size: clamp(14px, 6vw, 18px);
+    font-size: clamp(14px, 6vw, 22px);
     font-weight: 700;
     font-style: normal;
     text-align: center;
@@ -1728,6 +1731,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+
+.adventure-equipment-item .book-button{
+    margin-top: auto;
+    margin-bottom: 0px;
+    margin-left: auto;
+    margin-right: auto;
 }
  
 
@@ -1966,7 +1976,7 @@ body {
 
 .how-adventures-work-header h3 {
     font-family: "Figtree-700", sans-serif;
-    font-size: clamp(14px, 6vw, 26px);
+    font-size: clamp(14px, 6vw, 22px);
     font-weight: 700;
     font-style: normal;
     text-align: center;
@@ -2133,6 +2143,17 @@ body {
     margin: 0;
     margin-bottom: 20px;
 }
+
+.faq-answer ul, .faq-answer ol, .faq-answer li {
+    font-family: "Arial", sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--brand-dark-text);
+    margin-left: 20px;
+}
+/* .faq-answer ul {
+    margin-bottom: 20px;
+} */
 
 .faq-answer p:last-child {
     margin-bottom: 0;

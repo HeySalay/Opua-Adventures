@@ -1,0 +1,24 @@
+{
+  "name": "opua-adventures",
+  "version": "2.0.0",
+  "private": true,
+  "description": "The Opua Adventures Website",
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeySalay/Opua-Adventures.git"
+  },
+  "author": "HeySalay",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/HeySalay/Opua-Adventures/issues"
+  },
+  "homepage": "https://opuaadventures.com",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.7"
+  }
+}

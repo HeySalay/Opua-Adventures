@@ -1,0 +1,29 @@
+---
+layout: base.njk
+---
+
+{# Defining Names #}
+{% set banner = banner or banners[page.url] %}
+{# ------------ #}
+
+{# Skip Header #}
+<a class="skip-link" href="#main">Skip to content</a>
+
+{# Header — logo & sitenav #}
+{% include "header.njk" %}
+
+{# Main Content #}
+<main id="main">
+
+  {# Banner #}
+  {% if banner %}
+    {% include "banner.njk" %}
+  {% endif %}
+
+  {# Page Content #}
+  {{ content | safe }}
+
+</main>
+
+{# Footer #}
+{% include "footer.njk" %}

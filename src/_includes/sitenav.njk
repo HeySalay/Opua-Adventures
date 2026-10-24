@@ -1,0 +1,11 @@
+{# Navigation #}
+ <nav class="site-nav">
+  <ul class="site-nav__list">
+    {% for item in navigation %}
+      <li><a href="{{item.url}}" class="site-nav__link">{{ item.label }}</a></li>
+    {% else %}
+      <li>No links yet</li> {# runs only if the list is empty #}
+    {% endfor %}
+      <li class="site-nav__phone"><a href="tel:{{ site.phone }}">{{ site.phoneDisplay }}</a></li>
+  </ul>
+ </nav>

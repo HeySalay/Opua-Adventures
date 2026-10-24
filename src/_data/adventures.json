@@ -1,0 +1,15 @@
+{
+  "categories": [
+    { "name": "eFoil Experience", "url": "/efoil-rental/", "from": "$250", "note": "Ages 14 & up", "image": "/images/eFoil.png", "hook": "Fly above the water" },
+    { "name": "Seabob Adventures", "url": "/seabob-underwater-adventures/", "from": "$180", "note": "Ages 10 & up", "image": "/images/seabob.png", "hook": "Dive below the waves" },
+    { "name": "Sarasota Boat Tours", "url": "/sarasota-boat-tours/", "from": "$425", "note": "Up to 6 passengers", "image": "/images/tours.jpg", "hook": "Private captained charters" }
+  ],
+  "options": [
+    { "name": "eFoil Experience", "price": "From $250", "duration": "90 minutes", "bookingId": 5390 },
+    { "name": "Flite Scooter Adventure", "price": "From $250", "duration": "90 minutes", "bookingId": 5417 },
+    { "name": "Seabob Underwater Adventure", "price": "From $180", "duration": "60 minutes", "bookingId": 5415 },
+    { "name": "3-Hour Sunset Tour", "price": "$425", "duration": "3 hours", "bookingId": 6125 },
+    { "name": "4-Hour Boat Tour", "price": "$499", "duration": "4 hours", "bookingId": 6093 },
+    { "name": "Ultimate Adventure Package", "price": "$1,300", "duration": "2.5 hours", "bookingId": 5416 }
+  ]
+}

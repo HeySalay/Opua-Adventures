@@ -1,0 +1,24 @@
+/* ==========================================================================
+   base.css
+   Plain HTML elements: body, h1-h3, a, p, button
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Font Faces
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("/fonts/figtree-variable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Figtree";
+  font-style: italic;
+  font-weight: 300 900;
+  font-display: swap;
+  src: url("/fonts/figtree-italic-variable.woff2") format("woff2");
+}

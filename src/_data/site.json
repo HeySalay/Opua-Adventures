@@ -1,0 +1,28 @@
+{
+  "name": "Opua Adventures",
+  "url": "https://opuaadventures.com",
+  "phone": "+19415991234",
+  "phoneDisplay": "(941) 599-1234",
+  "email": "info@opuaadventures.com",
+  "bookingUrl": "https://book.singenuity.com/987/catalog/activities",
+  "areas": "Lido Key, Longboat Key, Bird Key, Siesta Key, Anna Maria Island",
+  "hours": [
+    { "days": "Mon-Sat", "time": "10am - 6pm" },
+    { "days": "Sun", "time": "10am - 4pm" }
+  ],
+  "logo": {
+    "white": "/images/opua-adventures-white.png",
+    "black": "/images/opua-adventures.png",
+    "alt": "Opua Adventures Logo"
+  },
+  "socials": [
+    { "name": "Facebook", "url": "https://www.facebook.com/OpuaAdventures", "icon": "facebook" },
+    { "name": "Instagram", "url": "https://www.instagram.com/opuaadventures/", "icon": "instagram" },
+    { "name": "YouTube", "url": "https://www.youtube.com/channel/UChSv34b0eW-8KjqmHvfmT-g", "icon": "youtube" },
+    { "name": "TikTok", "url": "https://www.tiktok.com/@opuaadventures", "icon": "tiktok" }
+  ],
+  "seo": {
+    "defaultDescription": "eFoil lessons, Seabob adventures, and private boat tours in Sarasota, Florida.",
+    "socialImage": "/images/social-preview.jpg"
+  }
+}

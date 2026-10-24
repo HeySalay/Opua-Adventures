@@ -1,0 +1,10 @@
+[
+  { "label": "Home", "url": "/" },
+  { "label": "eFoils", "url": "/efoil-rental/" },
+  { "label": "Seabobs", "url": "/seabob-underwater-adventures/" },
+  { "label": "Boat Tours", "url": "/sarasota-boat-tours/" },
+  { "label": "Packages", "url": "/ultimate-adventure-package/" },
+  { "label": "FAQ", "url": "/faq/" },
+  { "label": "Blog", "url": "/blog/" },
+  { "label": "Contact", "url": "/opua-adventures-contact/" }
+]

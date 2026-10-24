@@ -1,0 +1,31 @@
+{# Defining Names — Page value first, site default as fallback #}
+{% set pageTitle %}{{ title }} | {{ site.name }}{% endset %}
+{% set pageDescription = description or site.seo.defaultDescription %}
+{% set shareImage = site.url + (socialImage or site.seo.socialImage) %}
+{% set pageUrl %}{{ site.url}}{{ page.url}}{% endset %}
+
+{# SEO #}
+<title>{{ pageTitle }}</title>
+<meta name="description" content="{{ pageDescription }}">
+<link rel="canonical" href="{{ pageUrl }}">
+{% if noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+
+{# Social Sharing #}
+<meta property="og:title" content="{{ pageTitle }}">
+<meta property="og:description" content="{{ pageDescription }}">
+<meta property="og:image" content="{{ shareImage }}">
+<meta property="og:url" content="{{ pageUrl }}">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ pageTitle }}">
+<meta name="twitter:description" content="{{ pageDescription }}">
+<meta name="twitter:image" content="{{ shareImage }}">
+
+{# Icons & Themes #}
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#005F94">

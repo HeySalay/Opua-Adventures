@@ -22,3 +22,65 @@
   font-display: swap;
   src: url("/fonts/figtree-italic-variable.woff2") format("woff2");
 }
+
+/* --------------------------------------------------------------------------
+   Body
+   -------------------------------------------------------------------------- */
+
+body {
+   font-family: var(--font-body);
+   font-weight: var(--weight-regular);
+   font-size: var(--font-base);
+
+   line-height: var(--leading-normal);
+
+   color: var(--color-text);
+   background-color: var(--color-bg);
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   -------------------------------------------------------------------------- */
+
+   h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+
+  line-height: var(--leading-tight);
+
+  color: var(--color-heading);
+  
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-2x1);
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+h3 {
+  font-size: var(--text-lg);
+}
+
+p {
+  max-width: var(--width-text);
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-link--hover);
+  text-decoration: underline;
+  text-underline-offset: auto;
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}

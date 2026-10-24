@@ -1,0 +1,30 @@
+{# Ready to Book — every bookable option, from every activity in adventures.json #}
+<section class="section" data-theme="light">
+  <header class="section-header">
+    <h2>Ready to Book Your Adventure?</h2>
+    <p>Choose your experience and book instantly online</p>
+  </header>
+
+  <div class="card-grid card-grid--compact">
+    {# Outer loop: each activity (efoil, seabob, boat, package) #}
+    {% for id, activity in adventures %}
+      {# Inner loop: that activity's bookable options #}
+      {% for option in activity.options %}
+        <article class="card">
+          <header class="card__header">
+            <h3 class="card__title">{{ option.name }}</h3>
+          </header>
+          <div class="card__body">
+            <p>{{ option.price }}</p>
+            <p>{{ option.duration }}</p>
+          </div>
+          <footer class="card__footer">
+            <a class="btn btn--accent" href="{{ site.bookingOptionUrl }}{{ option.bookingId }}/rates" target="_blank" rel="noopener">Book Now</a>
+          </footer>
+        </article>
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+  <a class="btn btn--outline" href="/opua-adventures-contact/">Questions? Contact us!</a>
+</section>

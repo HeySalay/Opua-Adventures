@@ -1,0 +1,20 @@
+{
+  "boatPickups": [
+    { "name": "10th Street Boat Ramp", "city": "Sarasota" },
+    { "name": "Bayshore Gardens Marina", "city": "Bradenton" }
+  ],
+  "customDelivery": ["Anna Maria Island", "Longboat Key", "Venice Beach", "Private Docks & Vacation Rentals"],
+  "freeDelivery": [
+    {
+      "name": "Siesta Key Beach",
+      "detail": "Beach Access 5",
+      "text": "World-famous for its powdery white sand and crystal-clear waters. Perfect for Seabob adventures with excellent visibility and calm conditions.",
+      "highlights": ["Crystal-clear water", "Excellent visibility", "Calm, protected waters", "Beautiful marine life", "Easy beach access"]
+    },
+    {
+      "name": "Lido Beach",
+      "text": "Beautiful beach with great conditions for underwater exploration. Less crowded with excellent Seabob conditions.",
+      "highlights": ["Less crowded", "Great for beginners", "Scenic surroundings", "Calm waters", "Free parking available"]
+    }
+  ]
+}

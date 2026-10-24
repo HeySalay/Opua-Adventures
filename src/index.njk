@@ -1,4 +1,118 @@
 ---
+layout: page.njk
 title: "eFoil Lessons & Seabob Rentals in Sarasota"
 description: "Fly above the water on an eFoil or dive below with a Seabob. Lessons with pro instructors, free beach delivery & packages in Sarasota. Ages 10+."
 ---
+
+{# Video Banner — the homepage builds its own banner (no banners.json entry) #}
+<section class="banner">
+  <iframe class="banner__video"
+    src="https://player.vimeo.com/video/1147004771?background=1&muted=1&autoplay=1&loop=1"
+    title="Opua Adventures on the water"
+    allow="autoplay; fullscreen; picture-in-picture"
+    tabindex="-1" aria-hidden="true"></iframe>
+
+  <div class="banner__content">
+    <h1 class="banner__title">Sarasota's Complete Water Adventure Experience</h1>
+
+    <ul class="icon-list" role="list">
+      <li>Fly above the water on eFoils</li>
+      <li>Dive below with Seabobs</li>
+      <li>Enjoy scenic boat tours</li>
+    </ul>
+
+    <ul class="banner__checklist" role="list">
+      <li>Flite Authorized Partner</li>
+      <li>Professional Instructors</li>
+      <li>Free Delivery Available</li>
+      <li>Ages 10+ Welcome</li>
+    </ul>
+
+    <div class="banner__actions">
+      <a class="btn btn--accent" href="{{ site.bookingUrl }}" target="_blank" rel="noopener">Book Here</a>
+      <a class="btn btn--outline nowrap" href="tel:{{ site.phone }}">{{ site.phoneDisplay }}</a>
+    </div>
+
+    <p class="banner__text"><strong>Proudly Serving Sarasota:</strong> {{ site.areas }}</p>
+
+    <img class="banner__badge" src="{{ site.badges.flite.image }}" alt="{{ site.badges.flite.alt }}">
+  </div>
+</section>
+
+{# Choose Your Adventure — teaser cards for activities with "homeCard": true; swipe row on mobile, grid on desktop #}
+<section class="section">
+  <header class="section-header">
+    <h2>Choose Your Adventure</h2>
+    <p>Three unique experiences, one amazing location</p>
+    <ul class="pill-list" role="list">
+      {% for id, activity in adventures %}
+        {% if activity.homeCard %}
+          <li><a href="#card-{{ id }}">{{ activity.name }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </header>
+
+  <div class="card-scroller" tabindex="0" role="region" aria-label="Adventures">
+    {% for id, activity in adventures %}
+      {% if activity.homeCard %}
+        <article class="card" id="card-{{ id }}">
+          <header class="card__header">
+            <img src="{{ activity.image }}" alt="">
+            <h3 class="card__title"><a href="{{ activity.url }}">{{ activity.name }}</a></h3>
+          </header>
+          <div class="card__body">
+            <p>{{ activity.hook }}</p>
+            <p>From {{ activity.from }} · {{ activity.note }}</p>
+          </div>
+          <footer class="card__footer">
+            <a class="btn btn--accent" href="{{ activity.url }}">Explore</a>
+          </footer>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{# Featured adventure — change "package" to feature a different activity (e.g. during a sale) #}
+{% set featured = adventures.package %}
+{% set featuredOption = featured.options[0] %}
+
+<section class="section" data-theme="dark">
+  <header class="section-header">
+    <h2>{{ featured.name }}</h2>
+    <p>{{ featured.tagline }}</p>
+  </header>
+
+  <div class="split">
+    <div>
+      <p>{{ site.about }}</p>
+      <h3>What's Included:</h3>
+      <ul class="icon-list" role="list">
+        {% for line in featured.includes %}
+          <li>{{ line }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <article class="card card--featured">
+      <header class="card__header">
+        <p class="card__title">{{ featuredOption.price }}</p>
+        <p>{{ featuredOption.duration }} of adventure</p>
+      </header>
+      <div class="card__body">
+        <p>Perfect for groups, special occasions, or the ultimate adventure seeker.</p>
+      </div>
+      <footer class="card__footer">
+        <a class="btn btn--accent" href="{{ site.bookingOptionUrl }}{{ featuredOption.bookingId }}/rates" target="_blank" rel="noopener">Book {{ featuredOption.name }}</a>
+        <p><em>Call for a split day and custom packages.</em></p>
+      </footer>
+    </article>
+  </div>
+</section>
+
+{# Features — 6 reasons to choose Opua; data is ready in features.json, the include is still empty #}
+{% include "sections/features.njk" %}
+
+{# Ready to Book — every option from adventures.json #}
+{% include "sections/ready-to-book.njk" %}

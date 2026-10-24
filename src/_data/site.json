@@ -5,7 +5,9 @@
   "phoneDisplay": "(941) 599-1234",
   "email": "info@opuaadventures.com",
   "bookingUrl": "https://book.singenuity.com/987/catalog/activities",
+  "bookingOptionUrl": "https://book.singenuity.com/987/activity/details/",
   "areas": "Lido Key, Longboat Key, Bird Key, Siesta Key, Anna Maria Island",
+  "about": "Soar above the water on a real-life magic carpet with our Flitescooters and Fliteboard eFoils. Dive beneath the waves and cruise like a dolphin on the powerful, one-of-a-kind Seabob. Choose from thrilling experiences designed for all skill levels — no experience needed, just a sense of adventure.",
   "hours": [
     { "days": "Mon-Sat", "time": "10am - 6pm" },
     { "days": "Sun", "time": "10am - 4pm" }
@@ -14,6 +16,9 @@
     "white": "/images/opua-adventures-white.png",
     "black": "/images/opua-adventures.png",
     "alt": "Opua Adventures Logo"
+  },
+  "badges": {
+    "flite": { "image": "/images/flite-authorized-partner.png", "alt": "Flite Authorized Partner"}
   },
   "socials": [
     { "name": "Facebook", "url": "https://www.facebook.com/OpuaAdventures", "icon": "facebook" },

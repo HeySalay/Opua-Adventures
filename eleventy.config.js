@@ -10,6 +10,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/site.webmanifest": "site.webmanifest" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.ico": "favicon.ico" });
 
+  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
+  
   eleventyConfig.addFilter("readableDate", (date) =>
     date.toLocaleDateString("en-US", {
       year: "numeric",

@@ -1,1 +1,56 @@
-/* One job helpers: .text-center, .visually-hidden, .mt-lg, etc */
+/* ==========================================================================
+   utilities.css
+   One job helpers: .text-center, .visually-hidden, .title- etc
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Accessibility Utilities
+   -------------------------------------------------------------------------- */
+
+.visually-hidden {
+  position: absolute; /* Takes it out of the layout, so there's no gap left behind */
+  width: 1px; 
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%); /* Clips out the dot made from height, width, overflow */
+  white-space: nowrap; /* Stops text from wrapping into a tall column */
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Text Utilities
+   -------------------------------------------------------------------------- */
+
+.text-center {
+  text-align: center;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+/* Title Sizes
+   -------------------- */
+
+.title-xl {
+  font-size: var(--text-2xl);
+}
+
+.title-lg {
+  font-size: var(--text-xl);
+}
+
+.title-md {
+  font-size: var(--text-lg);
+}
+
+/* --------------------------------------------------------------------------
+   Layout Utilities
+   -------------------------------------------------------------------------- */
+
+   /* space between stacked items */
+.stack > * + * {
+  margin-block-start: var(--space-md);
+}

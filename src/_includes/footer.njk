@@ -1,0 +1,47 @@
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div class="site-footer__col">
+      <img class="site-footer__logo" src="{{ site.logo.white }}" alt="{{ site.name }}">
+      <ul class="site-footer__socials" role="list">
+        {% for social in site.socials %}
+          <li>
+            <a href="{{ social.url }}" target="_blank" rel="noopener" aria-label="{{ site.name }} on {{ social.name }}">
+              {% include "icons/" + social.icon + ".svg" %}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">About {{ site.name }}</h2>
+      <p>{{ site.about }}</p>
+      <p class="site-footer__legal text-center">
+        <a href="/privacy-policy/">Privacy Policy</a> · <a href="/terms-and-conditions/">Terms&nbsp;and&nbsp;Conditions</a>
+      </p>
+    </div>
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">Where to Find Us</h2>
+      <p><strong>{{ site.name }} | Serving Sarasota</strong></p>
+      <p>{{ site.areas }}</p>
+    </div>
+
+    <div class="site-footer__col">
+      <h2 class="site-footer__heading">Contact</h2>
+      <p><a href="tel:{{ site.phone }}">{{ site.phoneDisplay }}</a></p>
+      <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+      
+      <dl class="site-footer__hours">
+        {% for row in site.hours %}
+          <dt>{{ row.days }}</dt>
+          <dd>{{ row.time }}</dd>
+        {% endfor %}
+      </dl>
+    </div>
+  </div>
+
+  <p class="site-footer__copyright text-center">
+    &copy; {% year %} {{ site.name }}. All rights reserved. Website by HeySalay
+  </p>
+</footer>

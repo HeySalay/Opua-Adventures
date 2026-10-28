@@ -1,0 +1,19 @@
+{# Features — 6 reasons to choose Opua, from features.json (V1's features grid) #}
+<section class="section">
+  <div class="container">
+
+    {# No visible heading in V1's design, but screen readers need one to name the section #}
+    <h2 class="visually-hidden">Why Choose {{ site.name }}</h2>
+
+    <ul class="feature-grid" role="list">
+      {% for feature in features %}
+        <li class="feature">
+          <span class="feature__icon">{% include feature.icon %}</span>
+          <h3 class="feature__title">{{ feature.title }}</h3>
+          <p class="feature__text">{{ feature.text }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+
+  </div>
+</section>

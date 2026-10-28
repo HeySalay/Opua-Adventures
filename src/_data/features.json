@@ -1,8 +1,8 @@
 [
-  { "icon": "verified", "title": "Flite Authorized Partner", "text": "Opua Adventures is a Flite Authorized Reseller, Fliteschool and Flite Service Center." },
-  { "icon": "local_activity", "title": "Only Complete Experience", "text": "The only place in Sarasota offering eFoil and Seabob experiences." },
-  { "icon": "school", "title": "Expert Instructors", "text": "Professional trainers Seth and Dustin ensure your safety and maximize your fun on the water." },
-  { "icon": "delivery_truck_speed", "title": "Convenient Service", "text": "Free Seabob delivery to specific beach locations, full certified service center on Flite board eFoils." },
-  { "icon": "groups", "title": "All Ages Welcome", "text": "Activities for ages 10+ mean the whole family can enjoy adventures together." },
-  { "icon": "beach_access", "title": "Prime Locations", "text": "Beautiful Sarasota waters, Siesta Key, Longboat Key, and Lido Beach – the best spots for water adventures in sunny Florida!" }
+  { "icon": "icons/verified-48.svg", "title": "Flite Authorized Partner", "text": "Opua Adventures is a Flite Authorized Reseller, Fliteschool and Flite Service Center." },
+  { "icon": "icons/local-activity-48.svg", "title": "Only Complete Experience", "text": "The only place in Sarasota offering eFoil and Seabob experiences." },
+  { "icon": "icons/school-48.svg", "title": "Expert Instructors", "text": "Professional trainers Seth and Dustin ensure your safety and maximize your fun on the water." },
+  { "icon": "icons/truck-speed-48.svg", "title": "Convenient Service", "text": "Free Seabob delivery to specific beach locations, full certified service center on Flite board eFoils." },
+  { "icon": "icons/groups-48.svg", "title": "All Ages Welcome", "text": "Activities for ages 10+ mean the whole family can enjoy adventures together." },
+  { "icon": "icons/beach-48.svg", "title": "Prime Locations", "text": "Beautiful Sarasota waters, Siesta Key, Longboat Key, and Lido Beach – the best spots for water adventures in sunny Florida!" }
 ]

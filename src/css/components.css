@@ -2,4 +2,654 @@
    components.css
    Component styles — .btn, .card, .banner, .faq-item, .icon-list etc.
    ========================================================================== */
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
 
+  min-height: var(--size-tap);
+  padding: var(--space-sm) var(--space-lg);
+
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  text-decoration: none;
+
+  border: var(--border--clear);
+  border-radius: var(--radius--pill);
+
+  cursor: pointer;
+  transition: 
+    background-color var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease);
+}
+
+.btn--accent {
+  background: var(--color-btn-bg);
+  color: var(--color-btn-text);
+}
+
+.btn--accent:hover {
+  background-color: var(--color-btn-bg--hover);
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+
+.btn--outline:hover {
+  color: var(--color-bg);
+  background-color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   Section Headings
+   -------------------------------------------------------------------------- */
+.section-header {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-xs);
+
+  margin-block-end: var(--space-xl);
+  text-align: center;
+}
+
+/* Centered button row under a section's content (the mirror of .section-header) */
+.section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+
+  margin-block-start: var(--space-xl);
+}
+
+.pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.pill-list a {
+  padding: var(--space-2xs) var(--space-md);
+  border: var(--border);
+  border-radius: var(--radius--pill);
+  text-decoration: none;
+}
+
+/* --------------------------------------------------------------------------
+   Cards
+   -------------------------------------------------------------------------- */
+.card {
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header, body (grows), footer */
+
+  gap: var(--space-md);
+  padding: var(--space-lg);
+
+  --color-bg: var(--color-surface);
+  --color-text: var(--color-text--on-surface);
+  --color-text--muted: var(--color-text--muted-on-surface);
+  --color-heading: var(--color-heading--on-surface);
+  --color-link: var(--color-link--on-surface);
+  --color-focus: var(--color-focus--on-surface);
+
+  color: var(--color-text);
+  background: var(--color-bg);
+  box-shadow: var(--shadow);
+
+  border-radius: var(--radius);
+}
+
+/* Line up header/body/footer across neighbouring cards */
+.card-grid > .card,
+.card-scroller > .card {
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+}
+
+.card__header {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.card__header img {
+  border-radius: var(--radius--lg);
+}
+
+.card__title {
+  font-size: var(--text-lg);
+}
+
+.card__title a {
+  color: inherit;
+}
+
+.card__body {
+  display: grid;
+  gap: var(--space-2xs);
+  align-content: start;
+}
+
+.card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-self: end;
+}
+
+.card--featured {
+  --color-surface: var(--color-bg--featured);
+  --color-text--on-surface: var(--color-text--on-strong);
+  --color-text--muted-on-surface: var(--color-text--muted-on-strong);
+  --color-heading--on-surface: var(--color-text--on-strong);
+  --color-link--on-surface: var(--color-text--on-strong);
+  --color-focus--on-surface: var(--color-focus--on-strong);
+
+  box-shadow: var(--shadow--lg);
+}
+
+/* Centered card: text and footer buttons */
+.card--center {
+  text-align: center;
+}
+
+.card--center .card__footer {
+  justify-content: center;
+}
+
+.card--featured .card__title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+}
+/* --------------------------------------------------------------------------
+   Banner
+   -------------------------------------------------------------------------- */
+.banner {
+  --color-text: var(--color-text--on-strong);
+  --color-text--muted: var(--color-text--muted-on-strong);
+  --color-heading: var(--color-text--on-strong);
+  --color-link: var(--color-text--on-strong);
+  --color-link--hover: var(--color-link--hover-on-strong);
+  --color-focus: var(--color-focus--on-strong);
+  --color-bg: var(--color-bg--strong);   /* only used by the outline button's hover, see below */
+
+  color: var(--color-text);
+
+  display: grid;
+  isolation: isolate;
+  min-height: var(--height-banner);
+}
+
+.banner > *,
+.banner::after {
+  grid-area: 1/1;
+}
+
+.banner::after {
+  content: "";
+  z-index: -1;
+  background: var(--color-overlay);
+}
+
+/* Homepage video banner: taller */
+.banner:has(.banner__media) {
+  min-height: var(--height-banner--home);
+}
+
+/* Homepage video banner: bigger title */
+.banner:has(.banner__media) .banner__title {
+  font-size: var(--text-3xl);
+}
+
+.banner__image {
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  contain: size; /* the photo fills the banner but never decides its height */
+}
+
+/* Video background: an iframe can't use object-fit, so size it like "cover" by hand */
+.banner__media {
+  position: relative;
+  z-index: -1;
+  overflow: hidden;          /* crop whatever spills past the banner */
+  container-type: size;      /* lets the video measure this box with cqw and cqh */
+}
+
+.banner__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;      /* center it */
+
+  width: max(100cqw, 100cqh * 16 / 9);    /* wide enough for the box, or for its height */
+  height: max(100cqh, 100cqw * 9 / 16);   /* tall enough for the box, or for its width */
+
+  border: 0;
+  pointer-events: none;      /* clicks go to the page, not the video */
+}
+
+.banner__content {
+  display: grid;
+  justify-items: center;
+  place-self: center;
+  gap: var(--space-md);
+
+  padding: var(--space-lg);
+  text-align: center;
+}
+
+.banner__title {
+  font-size: var(--text-2xl);
+}
+
+.banner__subtitle {
+  font-size: var(--text-lg);
+}
+
+/* 2 x 2 until there's room for all 4 in one row, so one item is never left alone */
+.banner__checklist {
+  display: grid;
+  grid-template-columns: repeat(2, auto);   /* each column as wide as its longest item */
+  justify-content: center;                  /* center the whole grid in the banner */
+  gap: var(--space-xs) var(--space-lg);
+  padding: 0;
+  list-style: none;
+  text-align: start;                        /* line the checkmarks up in each column */
+
+  --color-icon: var(--color-icon--accent);  /* orange checks (SVG, so iPhone/iPad can't swap in an emoji) */
+}
+
+.banner__checklist li {
+  display: flex;
+  align-items: start;
+  gap: var(--space-2xs);
+}
+
+@media (min-width: 64em) {
+  .banner__checklist {
+    grid-template-columns: repeat(4, auto); /* all 4 side by side: they need about 900px */
+  }
+}
+
+
+.banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.banner__badge {
+  width: var(--width-badge);   /* 192px; the height follows */
+}
+
+/* --------------------------------------------------------------------------
+   Navigation
+   Phones and tablets: a dropdown under the header (popover), links centered.
+   80em and up: a row in the header. 80em because the full header needs
+   1,280px; below that it doesn't fit.
+   -------------------------------------------------------------------------- */
+
+.site-nav {
+  position: fixed;                       
+  inset: var(--height-header) 0 auto 0;     /* start where the header ends, full width */
+
+  width: auto;
+  margin: 0;
+  padding: var(--space-lg) var(--space-md);
+
+  color: var(--color-text);
+
+  background: var(--color-bg);
+  border: 0;
+  box-shadow: var(--shadow--down);
+}
+
+.site-nav__list {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-sm);
+  white-space: nowrap;
+}
+
+/* The rule between the page links and the phone number */
+.site-nav__phone {
+  justify-self: stretch;
+  margin-block-start: var(--space-sm);
+  padding-block-start: var(--space-md);
+  text-align: center;
+  border-block-start: var(--border);
+}
+
+.site-nav__link,
+.site-nav__phone a {
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-nav__phone a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.site-nav__link:hover,
+.site-nav__phone a:hover {
+  color: var(--color-link--hover);
+}
+
+/* Current page: link color (not sky blue, which is too light on white) */
+.site-nav__link[aria-current] {
+  color: var(--color-link);
+}
+
+/* Desktop: always visible, one row */
+@media (min-width: 80em) {
+  .site-nav {
+    position: static;
+    display: block;
+    margin-inline: auto;   /* center the nav */
+    padding: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  .site-nav__list {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .site-nav__phone {
+    display: none;               /* the phone is in the header actions instead */
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Content Pieces
+   -------------------------------------------------------------------------- */
+
+/* Icon List
+   -------------------- */
+
+.icon-list {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.icon-list li {
+  display: flex;
+  align-items: start;    /* icon level with the first line; wrapped lines start under the text */
+  gap: var(--space-xs);
+}
+
+/* Side by side on desktop (homepage banner); stacked on phones and tablets */
+@media (min-width: 64em) {
+  .icon-list--row {
+    display: flex;
+    flex-wrap: wrap;           /* wraps instead of overflowing if the text gets longer */
+    justify-content: center;
+    gap: var(--space-xs) var(--space-xl);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Page Helpers
+   -------------------------------------------------------------------------- */
+
+/* Skip link — parked above the screen until a keyboard user tabs to it */
+.skip-link {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 20;               /* above the sticky header (10) */
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius--pill);
+  background-color: var(--color-btn-bg);
+  color: var(--color-btn-text);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  translate: 0 -200%;        /* off-screen, but still focusable (unlike display: none) */
+  transition: translate var(--duration-fast) var(--ease);
+}
+
+.skip-link:focus {
+  translate: 0 0;
+}
+
+/* Scroll-to-top button — main.js adds .scroll-top--visible past 300px */
+.scroll-top {
+  --size-icon: 2.5rem;
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius--circle);
+  background-color: var(--color-bg);
+  color: var(--color-link);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;        /* hidden = can't be tabbed to or clicked */
+  translate: 0 var(--space-sm);
+  transition:
+    opacity var(--duration) var(--ease),
+    translate var(--duration) var(--ease),
+    visibility var(--duration),
+    color var(--duration-fast) var(--ease);
+}
+
+.scroll-top--visible {
+  opacity: 1;
+  visibility: visible;
+  translate: 0 0;
+}
+
+.scroll-top:hover {
+  color: var(--color-accent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link,
+  .scroll-top {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Icons
+   -------------------------------------------------------------------------- */
+
+.icon {
+  flex-shrink: 0;            /* don't let flex rows squash the icon */
+  width: var(--size-icon);
+  height: var(--size-icon);
+  fill: var(--color-icon, currentColor);
+}
+
+.icon-list li {
+  display: flex;
+  align-items: start;
+  gap: var(--space-xs);
+}
+
+/* Highlight icons (V1's orange): stars, checkmarks */
+.icon-list--accent{
+  --color-icon: var(--color-icon--accent);
+}
+
+/* Info icons (V1's dark blue): locations, contact details */
+.icon-list--brand {
+  --color-icon: var(--color-link);
+}
+
+/* --------------------------------------------------------------------------
+   Features
+   -------------------------------------------------------------------------- */
+
+.feature {
+  display: grid;
+  grid-row: span 3;               /* take three of the grid's rows: icon, title, text */
+  grid-template-rows: subgrid;    /* share those rows with the other features in the same row */
+  justify-items: center;          /* centers the icon, title and text */
+  gap: var(--space-sm);           /* space inside a feature (overrides the grid's row gap here) */
+
+  text-align: center;
+}
+
+.feature__icon {
+  --size-icon: 3rem;                         /* large icons, 48px */
+  --color-icon: var(--color-icon--accent);   /* V1's orange */
+
+  display: flex;   /* no stray space under the icon */
+}
+
+.feature__title {
+  margin-block-start: 0;   /* the gap spaces it, so cancel base.css's * + h3 margin */
+  font-size: var(--text-lg);
+}
+
+.feature__text {
+  color: var(--color-text--muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   FAQ — <details class="faq-item"> inside <div class="faq-list">
+   -------------------------------------------------------------------------- */
+
+.faq-list {
+  display: grid;
+  gap: var(--space-sm);
+  max-width: var(--width-text);
+  margin-inline: auto;
+}
+
+.faq-item {
+  border: var(--border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text--on-surface);
+}
+
+.faq-item__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: var(--size-tap);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-link--on-surface);   /* heading blue is too light for 16px text */
+  font-weight: var(--weight-bold);
+  cursor: pointer;
+  list-style: none;          /* removes the default ▶ marker */
+}
+
+.faq-item__question::-webkit-details-marker {
+  display: none;             /* same, for Safari */
+}
+
+.faq-item__question .icon {
+  transition: rotate var(--duration-fast) var(--ease);
+}
+
+.faq-item[open] .faq-item__question .icon {
+  rotate: 180deg;            /* chevron flips up when open */
+}
+
+.faq-item__answer {
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.faq-item__answer > * + * {
+  margin-block-start: var(--space-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-item__question .icon {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Blog Post — post.njk layout
+   -------------------------------------------------------------------------- */
+
+.post {
+  width: min(100% - 2 * var(--space-md), var(--width-text));
+  margin-inline: auto;
+  padding-block: var(--space-section--sm);
+}
+
+.post__header {
+  display: grid;
+  gap: var(--space-xs);
+  margin-block-end: var(--space-lg);
+}
+
+.post__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  justify-self: start;       /* grid would stretch the link full width */
+  font-weight: var(--weight-bold);
+}
+
+.post__date {
+  color: var(--color-text--muted);
+  font-size: var(--text-sm);
+}
+
+.post__image {
+  width: 100%;
+  aspect-ratio: var(--ratio-wide);
+  object-fit: cover;
+  border-radius: var(--radius--lg);
+  margin-block-end: var(--space-lg);
+}
+
+.post__body > * + * {
+  margin-block-start: var(--space-md);
+}
+
+.post__body > * + :is(h2, h3) {
+  margin-block-start: var(--space-xl);
+}
+
+.post__body :is(ul, ol) {
+  padding-inline-start: var(--space-lg);
+}
+
+.post__body img {
+  border-radius: var(--radius);
+}
+
+/* Callout box used inside blog markdown */
+.article-callout {
+  padding: var(--space-md) var(--space-lg);
+  border-inline-start: 4px solid var(--color-accent);
+  border-radius: var(--radius--sm);
+  background-color: var(--color-bg--alt);
+}
+
+.article-callout > * + * {
+  margin-block-start: var(--space-xs);
+}

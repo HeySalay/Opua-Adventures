@@ -2,12 +2,28 @@
 
   {# Site Logo #}
   <div>
-    <a href="/" class="site-header__logo">
-      <img src="{{ site.logo.black }}" alt="{{ site.logo.alt }}">
+    <a href="/">
+      <img class="site-header__logo" src="{{ site.logo.black }}" alt="{{ site.name }}">
     </a>
   </div>
 
   {# Site Navigation #}
   {% include "sitenav.njk" %}
+
+  {# Header Actions #}
+  <div class="site-header__actions">
+    <a class="site-header__phone" href="tel:{{ site.phone }}">
+      {% include "icons/call-24.svg" %}
+      {{ site.phoneDisplay }}
+    </a>
+    <a class="btn btn--accent" href="{{ site.bookingUrl }}" target="_blank" rel="noopener">Book Now</a>
+  </div>
+
+  {# Popover Toggle #}
+  <button class="site-header__toggle" popovertarget="site-nav" aria-label="Menu">
+    <span class="site-header__bar"></span>
+    <span class="site-header__bar"></span>
+    <span class="site-header__bar"></span>
+  </button>
 
 </header>

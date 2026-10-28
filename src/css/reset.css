@@ -18,3 +18,8 @@ img {
 button, input, select, textarea {
   font: inherit;
 }
+
+/* TEST BORDER — use to outline all elements in red, comment out when unused */
+/* * {
+  border: 1px solid red;
+} */

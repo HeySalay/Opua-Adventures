@@ -9,18 +9,19 @@
      Color: brand palette
      -------------------------------------------------------------------------- */
 
-  --color-primary: #005F94;
-  --color-secondary: #56B4E9;
-  --color-tertiary: #0B7A75;
-  --color-light: #EAF6FC;
+  --color-primary: #138AC4;         /* ocean blue */
+  --color-secondary: #075B78;       /* baltic blue */
+  --color-secondary--dark: #0C3A4D; /* deep ocean blue */
+  --color-tertiary: #00A6C8;        /* turquoise blue */
+  --color-light: #F3F8F7;           /* platinum */
 
-  --color-accent: #FFB00D;
-  --color-accent--alt: #C2471F;
-  --color-accent-ui: #004B75;
+  --color-accent: #F07832;          /* pumpkin spice */
+  --color-accent--alt: #F5B544;     /* sunflower gold */
+  --color-accent-ui: #102C3B;       /* jet black, for link hover */
 
-  --color-text--dark: #1B2A36;
-  --color-text--mid: #4B5B68;
-  --color-text--light: #F8FBFD;
+  --color-text--dark: #102C3B;      /* jet black */
+  --color-text--mid: #47616C;       /* blue slate */
+  --color-text--light: #F3F8F7;     /* platinum */
 
   --color-white: #FFFFFF;
 
@@ -31,28 +32,56 @@
 
   --color-bg: var(--color-white);
   --color-bg--alt: var(--color-light);
+  --color-bg--highlight: var(--color-tertiary);
+  --color-bg--featured: var(--color-secondary--dark);
+
   --color-text: var(--color-text--dark);
   --color-text--muted: var(--color-text--mid);
+  --color-text--white: var(--color-white);
+
   --color-heading: var(--color-primary);
-  --color-link: var(--color-primary);
+
+  --color-link: var(--color-secondary);
   --color-link--hover: var(--color-accent-ui);
+
   --color-btn-bg: var(--color-accent);
+  --color-btn-bg--hover: var(--color-accent--alt);
   --color-btn-text: var(--color-text--dark);
+
+  --color-icon--accent: var(--color-accent);   /* pumpkin */
+
   --color-focus: var(--color-accent-ui);
   --color-border: #C9DCE8;
   --color-overlay: rgb(0 0 0 / 0.45);
 
   /* Roles for .section--strong (themes can change these too) */
-  --color-bg--strong: var(--color-primary);
+  --color-bg--strong: var(--color-secondary);
   --color-text--on-strong: var(--color-text--light);
   --color-text--muted-on-strong: var(--color-light);
   --color-link--hover-on-strong: var(--color-white);
-  --color-focus--on-strong: var(--color-accent);
+  --color-focus--on-strong: var(--color-accent--alt);
+
+  /* Roles for .site-footer (the darkest band; themes can change these too) */
+  --color-bg--dark: var(--color-text--dark);
+  --color-text--on-dark: var(--color-text--light);
+  --color-text--muted-on-dark: var(--color-light);
+  --color-heading--on-dark: var(--color-tertiary);
+  --color-link--hover-on-dark: var(--color-accent);
+  --color-focus--on-dark: var(--color-accent--alt);
+
+  /* Roles for .card (a light surface, wherever it sits; themes can change these too) */
+  --color-surface: var(--color-white);
+  --color-text--on-surface: var(--color-text--dark);
+  --color-text--muted-on-surface: var(--color-text--mid);
+  --color-heading--on-surface: var(--color-primary);
+  --color-link--on-surface: var(--color-secondary);
+  --color-focus--on-surface: var(--color-accent-ui);
 
 
   /* --------------------------------------------------------------------------
      Typography
      -------------------------------------------------------------------------- */
+  
   /* font-family: */
   --font-heading: "Figtree", system-ui, sans-serif;
   --font-body: "Figtree", system-ui, sans-serif;
@@ -85,7 +114,13 @@
   --space-lg: 1.5rem;
   --space-xl: 2rem;
   --space-2xl: 3rem;
-  --space-section: clamp(3rem, 1.826rem + 5.217vw, 6rem);
+
+ /* Section spacing (padding-block on .section) */
+  --space-section--xs: clamp(1rem, 0.609rem + 1.739vw, 2rem);   /* 16px → 32px */
+  --space-section--sm: clamp(2rem, 1.217rem + 3.478vw, 4rem);   /* 32px → 64px */
+  --space-section--md: clamp(3rem, 1.826rem + 5.217vw, 6rem);   /* 48px → 96px */
+  --space-section--lg: clamp(4rem, 2.435rem + 6.957vw, 8rem);   /* 64px → 128px */
+  --space-section: var(--space-section--md);                    /* the default */
 
 
   /* --------------------------------------------------------------------------
@@ -94,16 +129,19 @@
 
   --radius: 0.75rem;
   --radius--sm: 0.375rem;
+  --radius--lg: 1rem;
   --radius--pill: 999px;     /* fully round ends on any width: buttons, badges */
   --radius--circle: 50%;     /* a circle on square elements: profile photos */
 
   --border: 1px solid var(--color-border);
+  --border--clear: 2px solid transparent;
   
   --focus-width: 3px;
   --focus-offset: 3px;
 
-  --shadow: 0 2px 8px rgb(27 42 54 / 0.08);
-  --shadow--lg: 0 8px 24px rgb(27 42 54 / 0.16);
+  --shadow: 0 2px 8px rgb(15 44 59 / 0.08);
+  --shadow--lg: 0 8px 24px rgb(15 44 59 / 0.16);
+  --shadow--down: 0 24px 24px -25px rgb(15 44 59 / 0.2);
 
 
   /* --------------------------------------------------------------------------
@@ -114,6 +152,8 @@
   --width-content: 72rem;
   --width-text: 65ch;
 
+  --height-wave: clamp(1.5rem, 0.522rem + 4.348vw, 4rem);  /* 24px on phones → 64px at 1280px */
+
 
   /* --------------------------------------------------------------------------
      Motion
@@ -122,4 +162,32 @@
   --duration-fast: 150ms;
   --duration: 300ms;
   --ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* --------------------------------------------------------------------------
+    Media
+    -------------------------------------------------------------------------- */
+
+  /* aspect-ratio: */
+  --ratio-card: 4 / 3;   /* card images: adventure teasers, blog list */
+  --ratio-wide: 16 / 9;  /* blog post header image, full-width images */
+  --ratio-square: 1;     /* instructor profile photos (later) */
+
+  /* min-height: */
+  --height-banner: 25rem;        /* inner page banners */
+  --height-banner--home: 85svh;  /* homepage video banner */
+
+  /* height: */
+  --height-logo: clamp(3rem, 2.609rem + 1.739vw, 4rem); /* header logo (48-64px); the tallest thing in the header */
+  /* --------------------------------------------------------------------------
+    1. The growth: the logo grows 16px (48 → 64) over 920px of window (360 → 1280). 16 ÷ 920 = 0.01739, which written as vw is 1.739vw.
+    2. The starting value: at 360px wide, that growth adds 0.01739 × 360 = 6.26px. To land on 48px, the fixed part has to be 48 − 6.26 = 41.74px, which is 2.609rem (41.74 ÷ 16).
+     -------------------------------------------------------------------------- */
+  --height-header: calc(var(--height-logo) + 2 * var(--space-sm)); /* where the mobile menu starts */
+
+  /* width: */
+  --width-badge: 12rem;     /* Flite partner badge (192px) */
+
+  /* width + height: */
+  --size-icon: 1.5em;    /* social and list icons, scales with text */
+  --size-tap: 2.75rem;   /* 44px: smallest comfortable touch target */
 }

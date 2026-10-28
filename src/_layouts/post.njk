@@ -3,8 +3,8 @@ layout: page.njk
 ---
 <article class="post">
   <header class="post__header">
-    <a class="post__back" href="/blog/">← Back to Blog</a>
-    <time datetime="{{ page.date.toISOString().split('T')[0] }}">{{ page.date | readableDate }}</time>
+    <a class="post__back" href="/blog/">{% include "icons/arrow-back-24.svg" %}<span>Back to Blog</span></a>
+    <time class="post__date" datetime="{{ page.date.toISOString().split('T')[0] }}">{{ page.date | readableDate }}</time>
     <h1>{{ heading or title }}</h1>
   </header>
 

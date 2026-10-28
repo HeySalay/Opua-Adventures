@@ -1,4 +1,13 @@
 {
+  "home": {
+    "title": "Sarasota's Complete Water Adventure Experience",
+    "activities": [
+      { "icon": "icons/surfing-24.svg", "text": "Fly above the water on eFoils" },
+      { "icon": "icons/water-24.svg", "text": "Dive below with Seabobs" },
+      { "icon": "icons/boat-24.svg", "text": "Enjoy scenic boat tours" }
+    ],
+    "checklist": ["Flite Authorized Partner", "Professional Instructors", "Free Delivery Available", "Ages 10+ Welcome"]
+  },
   "/efoil-rental/": {
     "title": "eFoil Adventures",
     "subtitle": "Experience the thrill of flying above the water on electric hydrofoil boards",

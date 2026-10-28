@@ -1,6 +1,6 @@
 {# Navigation — a popover panel on mobile, opened by the header's hamburger (popovertarget="site-nav") #}
 <nav class="site-nav" id="site-nav" popover aria-label="Main">
-  <ul class="site-nav__list">
+  <ul class="site-nav__list" role="list">
     {% for item in navigation %}
 
       {# Active link: exact match = this page; starts-with = inside this section (e.g. a blog post) #}
@@ -20,8 +20,9 @@
       <li>No links yet</li> {# runs only if the list is empty #}
     {% endfor %}
 
+    {# Navigation — Phone  #}
     <li class="site-nav__phone">
-      <a href="tel:{{ site.phone }}">{{ site.phoneDisplay }}</a>
+      <a href="tel:{{ site.phone }}">{% include "icons/call-24.svg" %}{{ site.phoneDisplay }}</a>
     </li>
   </ul>
 </nav>

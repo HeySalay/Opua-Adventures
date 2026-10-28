@@ -1,0 +1,26 @@
+<section class="banner">
+  <img class="banner__image" src="{{ banner.image }}" alt="">
+
+  <div class="banner__content">
+    <h1 class="banner__title">{{ banner.title or title }}</h1>
+
+    {% if banner.subtitle %}
+      <p class="banner__subtitle">{{ banner.subtitle }}</p>
+    {% endif %}
+
+    {% if banner.text %}
+      <p class="banner__text">{{ banner.text }}</p>
+    {% endif %}
+
+    {% if banner.checklist %}
+      <ul class="banner__checklist" role="list">
+        {% for item in banner.checklist %}
+          <li>
+            {% include "icons/check-24.svg" %}
+            <span>{{ item }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>

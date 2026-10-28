@@ -4,28 +4,38 @@ title: "eFoil Lessons & Seabob Rentals in Sarasota"
 description: "Fly above the water on an eFoil or dive below with a Seabob. Lessons with pro instructors, free beach delivery & packages in Sarasota. Ages 10+."
 ---
 
-{# Video Banner — the homepage builds its own banner (no banners.json entry) #}
+{# Video Banner — the homepage builds its own banner. Its text lives in banners.json under "home"
+   (not "/", which page.njk would turn into a second, standard banner) #}
+{% set home = banners.home %}
 <section class="banner">
-  <iframe class="banner__video"
-    src="https://player.vimeo.com/video/1147004771?background=1&muted=1&autoplay=1&loop=1"
-    title="Opua Adventures on the water"
-    allow="autoplay; fullscreen; picture-in-picture"
-    tabindex="-1" aria-hidden="true"></iframe>
+  <div class="banner__media">
+    <iframe class="banner__video"
+      src="https://player.vimeo.com/video/1147004771?background=1&muted=1&autoplay=1&loop=1"
+      title="Opua Adventures on the water"
+      allow="autoplay; fullscreen; picture-in-picture;"
+      tabindex="-1" aria-hidden="true"></iframe>
+  </div>
 
   <div class="banner__content">
-    <h1 class="banner__title">Sarasota's Complete Water Adventure Experience</h1>
+    <h1 class="banner__title">{{ home.title }}</h1>
 
-    <ul class="icon-list" role="list">
-      <li>Fly above the water on eFoils</li>
-      <li>Dive below with Seabobs</li>
-      <li>Enjoy scenic boat tours</li>
+    {# Each activity has its own icon, so the data holds { icon, text } #}
+    <ul class="icon-list icon-list--row" role="list">
+      {% for item in home.activities %}
+        <li>
+          {% include item.icon %}
+          <span>{{ item.text }}</span>
+        </li>
+      {% endfor %}
     </ul>
 
     <ul class="banner__checklist" role="list">
-      <li>Flite Authorized Partner</li>
-      <li>Professional Instructors</li>
-      <li>Free Delivery Available</li>
-      <li>Ages 10+ Welcome</li>
+      {% for item in home.checklist %}
+        <li>
+          {% include "icons/check-24.svg" %}
+          <span>{{ item }}</span>
+        </li>
+      {% endfor %}
     </ul>
 
     <div class="banner__actions">
@@ -33,44 +43,48 @@ description: "Fly above the water on an eFoil or dive below with a Seabob. Lesso
       <a class="btn btn--outline nowrap" href="tel:{{ site.phone }}">{{ site.phoneDisplay }}</a>
     </div>
 
-    <p class="banner__text"><strong>Proudly Serving Sarasota:</strong> {{ site.areas }}</p>
+    <p class="banner__text"><strong>Proudly Serving Sarasota:</strong></p> 
+    <p class="banner__text">{{ site.areas }}</p>
 
     <img class="banner__badge" src="{{ site.badges.flite.image }}" alt="{{ site.badges.flite.alt }}">
   </div>
+  
 </section>
 
 {# Choose Your Adventure — teaser cards for activities with "homeCard": true; swipe row on mobile, grid on desktop #}
-<section class="section">
-  <header class="section-header">
-    <h2>Choose Your Adventure</h2>
-    <p>Three unique experiences, one amazing location</p>
-    <ul class="pill-list" role="list">
+<section class="section section--top-sm">
+  <div class="container">
+    <header class="section-header">
+      <h2>Choose Your Adventure</h2>
+      <p>Three unique experiences, one amazing location</p>
+      <ul class="pill-list" role="list">
+        {% for id, activity in adventures %}
+          {% if activity.homeCard %}
+            <li><a href="#card-{{ id }}">{{ activity.name }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </header>
+
+    <div class="card-scroller" tabindex="0" role="region" aria-label="Adventures">
       {% for id, activity in adventures %}
         {% if activity.homeCard %}
-          <li><a href="#card-{{ id }}">{{ activity.name }}</a></li>
+          <article class="card card--center" id="card-{{ id }}">
+            <header class="card__header">
+              <img src="{{ activity.image }}" alt="">
+              <h3 class="card__title"><a href="{{ activity.url }}">{{ activity.name }}</a></h3>
+            </header>
+            <div class="card__body">
+              <p>{{ activity.hook }}</p>
+              <p>From {{ activity.from }} · {{ activity.note }}</p>
+            </div>
+            <footer class="card__footer">
+              <a class="btn btn--accent" href="{{ activity.url }}">Explore</a>
+            </footer>
+          </article>
         {% endif %}
       {% endfor %}
-    </ul>
-  </header>
-
-  <div class="card-scroller" tabindex="0" role="region" aria-label="Adventures">
-    {% for id, activity in adventures %}
-      {% if activity.homeCard %}
-        <article class="card" id="card-{{ id }}">
-          <header class="card__header">
-            <img src="{{ activity.image }}" alt="">
-            <h3 class="card__title"><a href="{{ activity.url }}">{{ activity.name }}</a></h3>
-          </header>
-          <div class="card__body">
-            <p>{{ activity.hook }}</p>
-            <p>From {{ activity.from }} · {{ activity.note }}</p>
-          </div>
-          <footer class="card__footer">
-            <a class="btn btn--accent" href="{{ activity.url }}">Explore</a>
-          </footer>
-        </article>
-      {% endif %}
-    {% endfor %}
+    </div>
   </div>
 </section>
 
@@ -78,36 +92,42 @@ description: "Fly above the water on an eFoil or dive below with a Seabob. Lesso
 {% set featured = adventures.package %}
 {% set featuredOption = featured.options[0] %}
 
-<section class="section section--strong">
-  <header class="section-header">
-    <h2>{{ featured.name }}</h2>
-    <p>{{ featured.tagline }}</p>
-  </header>
+<section class="section section--strong section--wave section--xs">
+  <div class="container">
+    <header class="section-header">
+      <h2>{{ featured.name }}</h2>
+      <p>{{ featured.tagline }}</p>
+    </header>
 
-  <div class="split">
-    <div>
-      <p>{{ site.about }}</p>
-      <h3>What's Included:</h3>
-      <ul class="icon-list" role="list">
-        {% for line in featured.includes %}
-          <li>{{ line }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-
-    <article class="card card--featured">
-      <header class="card__header">
-        <p class="card__title">{{ featuredOption.price }}</p>
-        <p>{{ featuredOption.duration }} of adventure</p>
-      </header>
-      <div class="card__body">
-        <p>Perfect for groups, special occasions, or the ultimate adventure seeker.</p>
+    <div class="split">
+      <div>
+        <p>{{ site.about }}</p>
+        <h3>What's Included:</h3>
+        {# Every line gets the same star, so the icon is in the template, not the data #}
+        <ul class="icon-list icon-list--accent" role="list">
+          {% for line in featured.includes %}
+            <li>
+              {% include "icons/star-24.svg" %}
+              <span>{{ line }}</span>
+            </li>
+          {% endfor %}
+        </ul>
       </div>
-      <footer class="card__footer">
-        <a class="btn btn--accent" href="{{ site.bookingOptionUrl }}{{ featuredOption.bookingId }}/rates" target="_blank" rel="noopener">Book {{ featuredOption.name }}</a>
-        <p><em>Call for a split day and custom packages.</em></p>
-      </footer>
-    </article>
+      
+      <article class="card card--featured">
+        <header class="card__header">
+          <p class="card__title">{{ featuredOption.price }}</p>
+          <p>{{ featuredOption.duration }} of adventure</p>
+        </header>
+        <div class="card__body">
+          <p>Perfect for groups, special occasions, or the ultimate adventure seeker.</p>
+        </div>
+        <footer class="card__footer">
+          <a class="btn btn--accent" href="{{ site.bookingOptionUrl }}{{ featuredOption.bookingId }}/rates" target="_blank" rel="noopener">Book {{ featuredOption.name }}</a>
+          <p><em>Call for a split day and custom packages.</em></p>
+        </footer>
+      </article>
+    </div>
   </div>
 </section>
 

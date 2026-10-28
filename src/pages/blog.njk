@@ -2,6 +2,23 @@
 title: "Sarasota Watersports Blog"
 description: "Tips, guides and stories about eFoiling and Seabobbing in Sarasota, Siesta Key and Anna Maria Island from the team at Opua Adventures."
 ---
-{%- for post in collections.post | reverse -%}
+<div class="card-grid">
+  {% for post in collections.post | reverse %}
+    <article class="card">…</article>
+  {% endfor %}
 
-{%- endfor -%}
+  {# Fill the empty spot when the post count is odd #}
+  {% if collections.post.length % 2 == 1 %}
+    <article class="card card--featured">
+      <header class="card__header">
+        <h2 class="card__title">Have a question?</h2>
+      </header>
+      <div class="card__body">
+        <p>Ask us about lessons, rentals or group bookings.</p>
+      </div>
+      <footer class="card__footer">
+        <a class="btn btn--accent" href="/opua-adventures-contact/">Contact us</a>
+      </footer>
+    </article>
+  {% endif %}
+</div>

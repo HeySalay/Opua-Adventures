@@ -1,5 +1,5 @@
 {# Ready to Book — every bookable option, from every activity in adventures.json #}
-<section class="section section--alt">
+<section class="section section--alt section--sm">
   <header class="section-header">
     <h2>Ready to Book Your Adventure?</h2>
     <p>Choose your experience and book instantly online</p>
@@ -10,7 +10,7 @@
     {% for id, activity in adventures %}
       {# Inner loop: that activity's bookable options #}
       {% for option in activity.options %}
-        <article class="card">
+        <article class="card card--center">
           <header class="card__header">
             <h3 class="card__title">{{ option.name }}</h3>
           </header>
@@ -26,5 +26,7 @@
     {% endfor %}
   </div>
 
-  <a class="btn btn--outline" href="/opua-adventures-contact/">Questions? Contact us!</a>
+  <div class="section-actions">
+    <a class="btn btn--outline" href="/opua-adventures-contact/">Questions? Contact us!</a>
+  </div>
 </section>

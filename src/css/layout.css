@@ -3,3 +3,409 @@
    Page Structure — .container, .section, .card-grid, header and footer layout
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   Page Structure
+   -------------------------------------------------------------------------- */
+
+/* Container
+   -------------------- */
+
+.container {
+  max-width: var(--width-content);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+/* Section
+   -------------------- */
+
+.section {
+  padding-block: var(--space-section);
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.section--xs {
+  padding-block: var(--space-section--xs);
+}
+
+.section--sm {
+  padding-block: var(--space-section--sm);
+}
+
+.section--md {
+  padding-block: var(--space-section--md);
+}
+
+.section--lg {
+  padding-block: var(--space-section--lg);
+}
+
+.section--top-sm {
+  padding-block-start: var(--space-section--sm);
+}
+
+.section--alt {
+  --color-bg: var(--color-bg--alt);
+}
+
+.section--strong {
+  --color-bg: var(--color-bg--strong);
+  --color-text: var(--color-text--on-strong);
+  --color-text--muted: var(--color-text--muted-on-strong);
+  --color-heading: var(--color-text--on-strong);
+  --color-link: var(--color-text--on-strong);
+  --color-link--hover: var(--color-link--hover-on-strong);
+  --color-icon--accent: var(--color-accent--alt);
+  --color-focus: var(--color-focus--on-strong);
+}
+
+/* Section Waves
+   -------------------- */
+
+.section--wave {
+  position: relative;  /* the waves are positioned against the section */
+  z-index: 1;          /* paint the waves over the sections above and below */
+}
+
+.section--wave::before,
+.section--wave::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  height: var(--height-wave);
+
+  background: var(--color-bg);   /* the section's own color, so the wave looks like its edge */
+  mask: url("/images/wave.svg")
+        center / 100% 100% no-repeat;
+}
+
+/* Top wave: sits just above the section */
+.section--wave::before {
+  bottom: calc(100% - 1px);
+}
+
+/* Bottom wave: sits just below the section, flipped upside down */
+.section--wave::after {
+  top: calc(100% - 1px);
+  scale: -1 -1;
+}
+
+/* --------------------------------------------------------------------------
+   Grids
+   -------------------------------------------------------------------------- */
+.card-grid {
+  display: grid;
+  gap: var(--space-lg);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 48em) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Compact Grid
+   -------------------- */
+
+/* Mobile: 2 column grid */
+.card-grid--compact {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Desktop: 3 column grid */
+@media (min-width: 64em) {
+  .card-grid--compact {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Card Scroller
+   -------------------- */
+
+/* Mobile: one row you swipe sideways, snapping card by card */
+.card-scroller {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(85%, 20rem);  /* next card peeks in from the edge */
+  grid-template-rows: repeat(3, auto); /* keeps subgrid header/body/footer */
+  gap: var(--space-md);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  padding-inline: var(--space-sm);
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--space-sm);
+}
+
+.card-scroller > .card {
+  scroll-snap-align: start;
+}
+
+/* Desktop: a normal 3-column grid, nothing to scroll */
+@media (min-width: 64em) {
+  .card-scroller {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: none;
+    overflow-x: visible;
+  }
+}
+
+/* Split Layout
+   -------------------- */
+
+.split {
+  display: grid;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 48em) {
+  .split {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.split > * {min-width: 0;}
+
+.split > .card {
+  align-self: center;
+}
+
+/* Features Grid
+   -------------------- */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl) var(--space-xl);   /* rows, then columns: like V1's 60px 40px */
+}
+
+@media (min-width: 48em) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64em) {
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: var(--space-sm) var(--space-md); /* block padding is part of --height-header */
+
+  background: var(--color-bg);
+}
+
+.site-header__logo {
+  height: var(--height-logo); /* sets the header's height, so the mobile menu knows where to start */
+  width: auto;
+  max-width: none;            /* keep the logo's shape; the header has to make room instead */
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  margin-inline-start: auto; /* pushes the actions (and the hamburger after them) to the right */
+
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.site-header,
+.site-header__actions {
+  gap: var(--space-sm);
+}
+
+.site-header__phone {
+  display: none; /* phones: the number is in the menu instead */
+  align-items: center;
+  gap: var(--space-2xs);
+
+  white-space: nowrap;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-header__phone:hover {
+  color: var(--color-link--hover);
+}
+
+@media (min-width: 48em) {
+  .site-header,
+  .site-header__actions {
+    gap: var(--space-lg);
+  }
+  .site-header__phone {
+    display: inline-flex;
+  }
+}
+
+/* Desktop: the nav sits between the logo and the actions */
+@media (min-width: 80em) {
+  .site-header__actions {
+    margin-inline-start: 0; /* the nav's auto margin does the pushing now */
+  }
+}
+
+/* Hamburger
+   -------------------- */
+
+.site-header__toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px; /* bar + gap = 8px, so all three bars land on whole pixels at 100%, 125% and 150% display scaling */
+
+  min-width: var(--size-tap);
+  min-height: var(--size-tap);
+  padding: var(--space-xs);
+  
+  background: none;
+  border: 0;
+}
+
+@media (min-width: 80em) {
+  .site-header__toggle {
+    display: none;
+  }
+}
+
+.site-header__bar {
+  display: block;
+  width: var(--size-icon); /* 1.5em ≈ 24px */
+  height: 3px;
+  background: currentColor;
+  border-radius: var(--radius--pill);
+}
+
+/* Site Header Animation
+   -------------------- */
+
+/* Animate the bars between ☰ and ✕ */
+.site-header__bar {
+  transition:
+    translate var(--duration-fast) var(--ease),
+    rotate var(--duration-fast) var(--ease),
+    opacity var(--duration-fast) var(--ease);
+}
+
+/* Menu open: top bar moves down to the middle and tilts */
+.site-header:has(.site-nav:popover-open) .site-header__bar:nth-child(1) {
+  translate: 0 8px; /* one bar + one gap */
+  rotate: 45deg;
+}
+
+/* Menu open: middle bar fades out */
+.site-header:has(.site-nav:popover-open) .site-header__bar:nth-child(2) {
+  opacity: 0;
+}
+
+/* Menu open: bottom bar moves up to the middle and tilts the other way */
+.site-header:has(.site-nav:popover-open) .site-header__bar:nth-child(3) {
+  translate: 0 -8px;
+  rotate: -45deg;
+}
+
+/* No animation for people who've asked their device for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .site-header__bar {
+    transition: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding-block: var(--space-2xl);
+
+  --color-bg: var(--color-bg--dark);
+  --color-text: var(--color-text--on-dark);
+  --color-text--muted: var(--color-text--muted-on-dark);
+  --color-heading: var(--color-heading--on-dark);
+  --color-link: var(--color-text--on-dark);
+  --color-link--hover: var(--color-link--hover-on-dark);
+  --color-focus: var(--color-focus--on-dark);
+
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 48em) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 64em) {
+  .site-footer__grid {
+    grid-template-columns: 1fr 2fr 1fr auto;
+  }
+}
+
+.site-footer__col {
+  min-width: 0;
+}
+
+.site-footer__logo {
+  margin-inline: auto;
+  height: auto;
+  width: 100%;            /* keep the logo's shape; the footer has to make room instead */
+}
+
+.site-footer__socials {
+  display: flex;
+  gap: var(--space-sm);
+  justify-content: center;
+}
+
+.site-footer__heading {
+  font-size: var(--text-lg);
+}
+
+.site-footer__hours {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-2xs) var(--space-md); /* row gap, column gap */
+}
+
+.site-footer__hours dt {
+  font-weight: var(--weight-bold);
+  text-align: end;
+}
+
+.site-footer__legal {
+  display: block;
+  font-size: var(--text-sm);
+}
+
+.site-footer__copyright {
+  padding-block: var(--space-lg);
+  font-size: var(--text-sm);
+  max-width: 100%;
+}

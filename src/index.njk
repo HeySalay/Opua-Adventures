@@ -7,7 +7,8 @@ description: "Fly above the water on an eFoil or dive below with a Seabob. Lesso
 {# Video Banner — the homepage builds its own banner. Its text lives in banners.json under "home"
    (not "/", which page.njk would turn into a second, standard banner) #}
 {% set home = banners.home %}
-<section class="banner">
+{# .banner--split: centered on phones and tablets; on desktop the heading sits bottom-left and the buttons bottom-right #}
+<section class="banner banner--split">
   <div class="banner__media">
     <iframe class="banner__video"
       src="https://player.vimeo.com/video/1147004771?background=1&muted=1&autoplay=1&loop=1"
@@ -17,36 +18,34 @@ description: "Fly above the water on an eFoil or dive below with a Seabob. Lesso
   </div>
 
   <div class="banner__content">
-    <h1 class="banner__title">{{ home.title }}</h1>
+    {# Title + tagline row read as one unit, so they sit closer than the banner's other pieces #}
+    <div class="banner__heading">
+      <h1 class="banner__title">{{ home.title }}</h1>
 
-    {# Each activity has its own icon, so the data holds { icon, text } #}
-    <ul class="icon-list icon-list--row" role="list">
-      {% for item in home.activities %}
-        <li>
-          {% include item.icon %}
-          <span>{{ item.text }}</span>
-        </li>
-      {% endfor %}
-    </ul>
+      {# Each activity has its own icon, so the data holds { icon, text } — icons removed in this version, structure left intact to maintain compatibility #}
+      <ul class="icon-list icon-list--row" role="list">
+        {% for item in home.activities %}
+          <li>
+            {# {% include item.icon %} #}
+            <span>{{ item.text }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
 
-    <ul class="banner__checklist" role="list">
+    {# <ul class="banner__checklist" role="list">
       {% for item in home.checklist %}
         <li>
           {% include "icons/check-24.svg" %}
           <span>{{ item }}</span>
         </li>
       {% endfor %}
-    </ul>
+    </ul> #}
 
     <div class="banner__actions">
-      <a class="btn btn--accent" href="{{ site.bookingUrl }}" target="_blank" rel="noopener">Book Here</a>
+      <a class="btn btn--accent" href="{{ site.bookingUrl }}" target="_blank" rel="noopener">Book Now</a>
       <a class="btn btn--outline nowrap" href="tel:{{ site.phone }}">{{ site.phoneDisplay }}</a>
     </div>
-
-    <p class="banner__text"><strong>Proudly Serving Sarasota:</strong></p> 
-    <p class="banner__text">{{ site.areas }}</p>
-
-    <img class="banner__badge" src="{{ site.badges.flite.image }}" alt="{{ site.badges.flite.alt }}">
   </div>
   
 </section>
@@ -57,7 +56,7 @@ description: "Fly above the water on an eFoil or dive below with a Seabob. Lesso
     <header class="section-header">
       <h2>Choose Your Adventure</h2>
       <p>Three unique experiences, one amazing location</p>
-      <ul class="pill-list" role="list">
+      <ul class="pill-list pill-list--jump" role="list">
         {% for id, activity in adventures %}
           {% if activity.homeCard %}
             <li><a href="#card-{{ id }}">{{ activity.name }}</a></li>
@@ -78,8 +77,22 @@ description: "Fly above the water on an eFoil or dive below with a Seabob. Lesso
               <p>{{ activity.hook }}</p>
               <p>From {{ activity.from }} · {{ activity.note }}</p>
             </div>
-            <footer class="card__footer">
-              <a class="btn btn--accent" href="{{ activity.url }}">Explore</a>
+            <footer class="card__footer card__footer--stack">
+              {# One booking button per option: two sit side by side, one fills the row.
+                 Paired buttons use the option's "short" label; the hidden "Book" keeps
+                 the link clear for screen readers. #}
+              <div class="btn-group">
+                {% for option in activity.options %}
+                  <a class="btn btn--accent" href="{{ site.bookingOptionUrl }}{{ option.bookingId }}/rates" target="_blank" rel="noopener">
+                    {%- if activity.options.length > 1 -%}
+                      <span class="visually-hidden">Book </span>{{ option.short }}
+                    {%- else -%}
+                      Book Now
+                    {%- endif -%}
+                  </a>
+                {% endfor %}
+              </div>
+              <a class="btn btn--outline" href="{{ activity.url }}">Learn More</a>
             </footer>
           </article>
         {% endif %}
@@ -114,7 +127,7 @@ description: "Fly above the water on an eFoil or dive below with a Seabob. Lesso
         </ul>
       </div>
       
-      <article class="card card--featured">
+      <article class="card card--featured card--center">
         <header class="card__header">
           <p class="card__title">{{ featuredOption.price }}</p>
           <p>{{ featuredOption.duration }} of adventure</p>
@@ -123,7 +136,7 @@ description: "Fly above the water on an eFoil or dive below with a Seabob. Lesso
           <p>Perfect for groups, special occasions, or the ultimate adventure seeker.</p>
         </div>
         <footer class="card__footer">
-          <a class="btn btn--accent" href="{{ site.bookingOptionUrl }}{{ featuredOption.bookingId }}/rates" target="_blank" rel="noopener">Book {{ featuredOption.name }}</a>
+          <a class="btn btn--accent" href="{{ site.bookingOptionUrl }}{{ featuredOption.bookingId }}/rates" target="_blank" rel="noopener">Book {{ featured.nameShort }}</a>
           <p><em>Call for a split day and custom packages.</em></p>
         </footer>
       </article>

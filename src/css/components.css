@@ -6,6 +6,8 @@
    Buttons
    -------------------------------------------------------------------------- */
 .btn {
+  position: relative;  /* holds any .visually-hidden text inside it; otherwise that text can
+                          poke out of a scroll container (.card-scroller) and widen the page */
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -49,6 +51,50 @@
   border-color: var(--color-text);
 }
 
+/* Header Book Now on the smallest phones (under 360px): less side padding so the
+   header row fits a 320px screen. (Here, not with the header in layout.css,
+   because this components layer would override it.) */
+@media (max-width: 22.49em) {
+  .site-header__actions .btn {
+    padding-inline: var(--space-sm);
+  }
+
+  /* Homepage banner buttons: 16px sides instead of 24px, so Book Now and the phone
+     number fit side by side on a 320px screen instead of stacking */
+  .banner__actions .btn {
+    padding-inline: var(--space-md);
+  }
+}
+
+/* Button group: buttons share one row in equal widths. Two buttons sit side by
+   side, one fills the row. Tighter side padding so short labels fit in a card on a 320px phone. */
+.btn-group {
+  display: grid;
+  grid-auto-flow: column;   /* each new button adds a column, not a row */
+  grid-auto-columns: 1fr;   /* every column the same width */
+  gap: var(--space-xs);
+}
+
+.btn-group .btn {
+  padding-inline: var(--space-xs);
+}
+
+/* Small phones (up to 376px): paired labels ("3-Hr Sunset", "Flitescooter") need
+   about 88px, more than half a card has at these widths; from 377px they fit unaided.
+   Tighter card padding, 4px button sides and 14px text together keep each label on
+   one line. (After the rule above, which would otherwise win: same specificity,
+   later in the file) */
+@media (max-width: 23.5em) {
+  .card-scroller > .card {
+    padding: var(--space-md);
+  }
+
+  .btn-group .btn {
+    padding-inline: var(--space-2xs);
+    font-size: var(--text-sm);
+  }
+}
+
 /* --------------------------------------------------------------------------
    Section Headings
    -------------------------------------------------------------------------- */
@@ -83,6 +129,15 @@
   border: var(--border);
   border-radius: var(--radius--pill);
   text-decoration: none;
+}
+
+/* Jump links into a .card-scroller: only needed while some cards are off-screen.
+   Hidden from 60em, the same breakpoint where .card-scroller becomes a grid
+   and every card is visible (keep the two in step) */
+@media (min-width: 60em) {
+  .pill-list--jump {
+    display: none;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -166,6 +221,27 @@
   justify-content: center;
 }
 
+/* Cards in a compact grid get less inner padding, so "Book Now" fits on one
+   line in a half-width phone card. (Here, not in layout.css: the components
+   layer comes later, so it would override a layout rule.) */
+.card-grid--compact > .card {
+  padding: var(--space-md);
+}
+
+/* ...and their buttons get less side padding, so "Book Now" stays on one line
+   on a 360px phone */
+.card-grid--compact .btn {
+  padding-inline: var(--space-md);
+}
+
+/* Stacked footer: each child takes the full card width (a button group, then a
+   full-width button), instead of the default row of buttons */
+.card__footer--stack {
+  display: grid;
+  grid-template-columns: 1fr;  /* one full-width column (.card--center's justify-content would shrink it) */
+  gap: var(--space-xs);
+}
+
 .card--featured .card__title {
   font-size: var(--text-2xl);
   font-weight: var(--weight-bold);
@@ -203,6 +279,14 @@
 /* Homepage video banner: taller */
 .banner:has(.banner__media) {
   min-height: var(--height-banner--home);
+}
+
+/* Tablet up: never taller than the video's own 16:9 shape, so the whole frame shows.
+   (85svh on a portrait tablet was much taller than the video, so "cover" cropped its sides) */
+@media (min-width: 48em) {
+  .banner:has(.banner__media) {
+    min-height: min(var(--height-banner--home), 100vw * 9 / 16);
+  }
 }
 
 /* Homepage video banner: bigger title */
@@ -243,10 +327,23 @@
   display: grid;
   justify-items: center;
   place-self: center;
-  gap: var(--space-md);
+  gap: var(--space-2xl);
 
-  padding: var(--space-lg);
+  padding: var(--space-lg) var(--space-sm);  /* narrow sides on the smallest phones so the icon row fits */
   text-align: center;
+}
+
+@media (min-width: 22.5em) {
+  .banner__content {
+    padding-inline: var(--space-lg);
+  }
+}
+
+/* The title and its tagline row read as one unit, so they sit closer together
+   than the banner's other pieces */
+.banner__heading {
+  display: grid;
+  gap: var(--space-xs);
 }
 
 .banner__title {
@@ -257,10 +354,11 @@
   font-size: var(--text-lg);
 }
 
-/* 2 x 2 until there's room for all 4 in one row, so one item is never left alone */
+/* Phones: one column. Tablets: 2 x 2. Desktop: all 4 in one row.
+   (Never 3 columns, so one item is never left alone on a row) */
 .banner__checklist {
   display: grid;
-  grid-template-columns: repeat(2, auto);   /* each column as wide as its longest item */
+  grid-template-columns: auto;              /* one column, as wide as the longest item */
   justify-content: center;                  /* center the whole grid in the banner */
   gap: var(--space-xs) var(--space-lg);
   padding: 0;
@@ -276,6 +374,12 @@
   gap: var(--space-2xs);
 }
 
+@media (min-width: 48em) {
+  .banner__checklist {
+    grid-template-columns: repeat(2, auto); /* each column as wide as its longest item */
+  }
+}
+
 @media (min-width: 64em) {
   .banner__checklist {
     grid-template-columns: repeat(4, auto); /* all 4 side by side: they need about 900px */
@@ -287,11 +391,49 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-sm);
+  gap: var(--space-md);
 }
 
 .banner__badge {
   width: var(--width-badge);   /* 192px; the height follows */
+}
+
+/* Split banner (homepage video). On every screen the content sits at the bottom of the
+   video and a gradient replaces the flat overlay: dark behind the text, fading to clear,
+   so more of the footage shows.
+   Phones: centered and stacked (heading, then buttons) at the bottom.
+   Tablet and desktop: the heading sits bottom-left and the buttons bottom-right,
+   lined up with the page's .container edges. */
+.banner--split::after {
+  background: var(--gradient-overlay);
+}
+
+.banner--split .banner__content {
+  align-self: end;
+  padding-block-end: var(--space-2xl);  /* same as the content's gap, so the buttons sit centered
+                                           between the tagline and the bottom of the video */
+}
+
+@media (min-width: 48em) {
+  .banner--split .banner__content {
+    grid-template-columns: 1fr auto;  /* heading takes the room, buttons take what they need */
+    align-items: end;                 /* bottoms line up: the tagline with the buttons */
+    justify-items: start;
+    align-self: end;
+    justify-self: center;
+
+    width: min(100%, var(--width-content));   /* same width and side padding as .container */
+    padding: var(--space-2xl) var(--space-md);
+    text-align: start;
+  }
+
+  .banner--split .icon-list--row {
+    justify-content: start;
+  }
+
+  .banner--split .banner__actions {
+    flex-wrap: nowrap;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -395,14 +537,23 @@
   gap: var(--space-xs);
 }
 
-/* Side by side on desktop (homepage banner); stacked on phones and tablets */
-@media (min-width: 64em) {
-  .icon-list--row {
-    display: flex;
-    flex-wrap: wrap;           /* wraps instead of overflowing if the text gets longer */
-    justify-content: center;
-    gap: var(--space-xs) var(--space-xl);
-  }
+/* Text-only tagline row: EFOILS · SEABOBS · BOAT TOURS */
+.icon-list--row li + li::before {
+  content: "·" / "";           /* after the slash: alt text, empty so screen readers skip the dot */
+}
+
+/* Side by side, centered, on every screen (homepage banner activities).
+   flex-wrap is a safety net: it wraps instead of overflowing if the text gets longer */
+.icon-list--row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs) var(--space-xs);
+
+  text-transform: uppercase;
+  letter-spacing: var(--space-4xs);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
 }
 
 /* --------------------------------------------------------------------------

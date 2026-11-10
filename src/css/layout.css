@@ -76,11 +76,17 @@
   height: var(--height-wave);
 
   background: var(--color-bg);   /* the section's own color, so the wave looks like its edge */
-  mask: url("/images/wave.svg")
-        center / 100% 100% no-repeat;
+  /* A seamless tile repeated sideways, so it can slide (see the animation below).
+     The original stretched wave is kept in images/wave.svg; to go back, use:
+     mask: url("/images/wave.svg") center / 100% 100% no-repeat; */
+  mask: url("/images/wave-loop.svg")
+        0 -1px / var(--width-wave) calc(100% + 2px) repeat-x;
+  /* The mask is 2px taller than the box and starts 1px above it, so both box edges sit
+     inside the image's empty area. Without that, Chrome left a faint 1px line of
+     --color-bg along the wave's outer edge while the scroll animation ran */
 }
 
-/* Top wave: sits just above the section */
+/* Top wave: sits just above/below the section, with -1px overlap */
 .section--wave::before {
   bottom: calc(100% - 1px);
 }
@@ -89,6 +95,33 @@
 .section--wave::after {
   top: calc(100% - 1px);
   scale: -1 -1;
+}
+
+/* Drift on scroll: the waves slide only while the page scrolls, driven by the
+   section's own trip through the screen (a view timeline) instead of a clock.
+   Scroll down and they drift forward, scroll up and they drift back.
+   The mask moves exactly one tile width, so the shape lines up at both ends.
+   The bottom wave is mirrored by scale, so it drifts the opposite way.
+   Browsers without scroll-driven animations (Firefox for now) and people who've
+   asked for less motion get a still wave. */
+.section--wave {
+  view-timeline: --wave-scroll;  /* names this section's pass through the viewport */
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .section--wave::before,
+    .section--wave::after {
+      animation: wave-drift linear both;
+      animation-timeline: --wave-scroll;  /* after the shorthand, which would reset it */
+    }
+  }
+}
+
+@keyframes wave-drift {
+  to {
+    mask-position: var(--width-wave) -1px;  /* same -1px as above, so only x moves */
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -109,9 +142,12 @@
 /* Compact Grid
    -------------------- */
 
-/* Mobile: 2 column grid */
-.card-grid--compact {
-  grid-template-columns: repeat(2, 1fr);
+/* Smallest phones (under 360px): one column, since two cards can't fit their
+   "Book Now" buttons side by side. 360px and up: 2 column grid */
+@media (min-width: 22.5em) {
+  .card-grid--compact {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Desktop: 3 column grid */
@@ -131,19 +167,41 @@
   grid-auto-columns: min(85%, 20rem);  /* next card peeks in from the edge */
   grid-template-rows: repeat(3, auto); /* keeps subgrid header/body/footer */
   gap: var(--space-md);
+
   overflow-x: auto;
   overscroll-behavior-x: contain;
+
   padding-inline: var(--space-sm);
   scroll-snap-type: x mandatory;
   scroll-padding-inline: var(--space-sm);
+  scrollbar-width: thin;                                     /* auto | thin | none */
+  scrollbar-color: var(--color-primary) var(--color-border); /* thumb, then track */
+  padding-block-end: var(--space-sm);                        /* room between the cards and the bar */
+
+  /* overflow-x: auto also clips the top and bottom (overflow can't scroll one way and
+     stay visible the other), which cut off the cards' shadow above them. 8px of padding
+     gives the shadow (6px above the card) room, and the negative margin pulls the row
+     back up so the spacing under the section header doesn't change */
+  padding-block-start: var(--space-xs);
+  margin-block-start: calc(-1 * var(--space-xs));
 }
 
 .card-scroller > .card {
   scroll-snap-align: start;
 }
 
-/* Desktop: a normal 3-column grid, nothing to scroll */
-@media (min-width: 64em) {
+/* Tablet: two full cards plus a slice of the next, sized from the scroller's width
+   (not a fixed 20rem), so the peek always looks deliberate */
+@media (min-width: 48em) {
+  .card-scroller {
+    grid-auto-columns: calc((100% - var(--space-md)) / 2.25);
+  }
+}
+
+/* 60em (960px) up: a normal 3-column grid, nothing to scroll. Three cards first fit here
+   (about 288px each, with the paired booking buttons still on one line).
+   .pill-list--jump hides at the same breakpoint: keep the two in step */
+@media (min-width: 60em) {
   .card-scroller {
     grid-auto-flow: row;
     grid-template-columns: repeat(3, 1fr);
@@ -207,7 +265,7 @@
   align-items: center;
   justify-content: space-between;
 
-  padding: var(--space-sm) var(--space-md); /* block padding is part of --height-header */
+  padding: var(--space-sm) var(--space-xs); /* block padding is part of --height-header; sides widen at 22.5em */
 
   background: var(--color-bg);
 }
@@ -229,9 +287,21 @@
   white-space: nowrap;
 }
 
+/* Smallest phones (under 360px): tight gaps and side padding so the logo,
+   Book Now and the menu button fit on a 320px screen */
 .site-header,
 .site-header__actions {
-  gap: var(--space-sm);
+  gap: var(--space-xs);
+}
+
+@media (min-width: 22.5em) {
+  .site-header {
+    padding-inline: var(--space-md);
+  }
+  .site-header,
+  .site-header__actions {
+    gap: var(--space-sm);
+  }
 }
 
 .site-header__phone {
@@ -336,7 +406,7 @@
    Footer
    -------------------------------------------------------------------------- */
 .site-footer {
-  padding-block: var(--space-2xl);
+  padding-block-start: var(--space-2xl);
 
   --color-bg: var(--color-bg--dark);
   --color-text: var(--color-text--on-dark);
@@ -405,7 +475,17 @@
 }
 
 .site-footer__copyright {
-  padding-block: var(--space-lg);
+  /* Phones: the copyright wraps to the right edge, so extra space below lifts it
+     clear of the fixed .scroll-top button (3rem tall, var(--space-md) from the bottom) */
+  padding-block: var(--space-lg) calc(3rem + 2 * var(--space-md));
+  padding-inline: var(--space-sm);
   font-size: var(--text-sm);
   max-width: 100%;
+}
+
+/* Tablet up: one centered line that never reaches the button */
+@media (min-width: 48em) {
+  .site-footer__copyright {
+    padding-block-end: var(--space-lg);
+  }
 }

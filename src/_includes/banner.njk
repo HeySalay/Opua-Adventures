@@ -2,17 +2,20 @@
   <img class="banner__image" src="{{ banner.image }}" alt="">
 
   <div class="banner__content">
-    <h1 class="banner__title">{{ banner.title or title }}</h1>
+    {# Title + subtitle read as one unit: same tight gap as the homepage banner #}
+    <div class="banner__heading">
+      <h1 class="banner__title">{{ banner.title or title }}</h1>
 
-    {% if banner.subtitle %}
-      <p class="banner__subtitle">{{ banner.subtitle }}</p>
-    {% endif %}
+      {% if banner.subtitle %}
+        <p class="banner__subtitle">{{ banner.subtitle }}</p>
+      {% endif %}
+    </div>
 
     {% if banner.text %}
       <p class="banner__text">{{ banner.text }}</p>
     {% endif %}
 
-    {% if banner.checklist %}
+    {# {% if banner.checklist %}
       <ul class="banner__checklist" role="list">
         {% for item in banner.checklist %}
           <li>
@@ -21,6 +24,6 @@
           </li>
         {% endfor %}
       </ul>
-    {% endif %}
+    {% endif %} #}
   </div>
 </section>

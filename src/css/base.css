@@ -68,6 +68,12 @@ h3 {
   margin-block-start: var(--space-lg);
 }
 
+/* a list right under a heading gets a little space too: half the space above the
+   heading, so the heading still reads as part of its list ("What's Included:") */
+h3 + :is(ul, ol) {
+  margin-block-start: var(--space-sm);
+}
+
 h1, h2, h3 {
   font-family: var(--font-heading);
   font-weight: var(--weight-bold);

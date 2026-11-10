@@ -42,7 +42,7 @@
   --color-heading: var(--color-primary);
 
   --color-link: var(--color-secondary);
-  --color-link--hover: var(--color-accent-ui);
+  --color-link--hover: var(--color-accent);
 
   --color-btn-bg: var(--color-accent);
   --color-btn-bg--hover: var(--color-accent--alt);
@@ -53,6 +53,7 @@
   --color-focus: var(--color-accent-ui);
   --color-border: #C9DCE8;
   --color-overlay: rgb(0 0 0 / 0.45);
+  --gradient-overlay: linear-gradient(to top, rgb(0 0 0 / 0.65), rgb(0 0 0 / 0.35) 40%, transparent 75%);  /* split banner on desktop: dark behind the text at the bottom, clear at the top */
 
   /* Roles for .section--strong (themes can change these too) */
   --color-bg--strong: var(--color-secondary);
@@ -107,6 +108,8 @@
      Spacing
      -------------------------------------------------------------------------- */
 
+  --space-4xs: 0.0625rem;
+  --space-3xs: 0.125rem;
   --space-2xs: 0.25rem;
   --space-xs: 0.5rem;
   --space-sm: 0.75rem;
@@ -139,7 +142,7 @@
   --focus-width: 3px;
   --focus-offset: 3px;
 
-  --shadow: 0 2px 8px rgb(15 44 59 / 0.08);
+  --shadow: 0 2px 8px rgb(15 44 59 / 0.10);
   --shadow--lg: 0 8px 24px rgb(15 44 59 / 0.16);
   --shadow--down: 0 24px 24px -25px rgb(15 44 59 / 0.2);
 
@@ -153,6 +156,7 @@
   --width-text: 65ch;
 
   --height-wave: clamp(1.5rem, 0.522rem + 4.348vw, 4rem);  /* 24px on phones → 64px at 1280px */
+  --width-wave: clamp(30rem, 10.435rem + 86.957vw, 80rem);  /* one wave tile: 480px on phones → 1280px at 1280px */
 
 
   /* --------------------------------------------------------------------------

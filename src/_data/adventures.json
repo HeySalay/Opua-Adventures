@@ -1,8 +1,9 @@
 {
   "efoil": {
     "name": "eFoil Experience",
+    "nameShort": "eFoil Adventure",
     "url": "/efoil-rental/",
-    "image": "/images/eFoil.png",
+    "image": "/images/efoil-adventures.jpg",
     "hook": "Fly above the water",
     "from": "$250",
     "note": "Ages 14 & up",
@@ -14,12 +15,13 @@
       { "label": "Supervision", "value": "Minors need adult supervision" }
     ],
     "options": [
-      { "id": "fliteboard", "name": "eFoil Experience", "price": "From $250", "duration": "90 minutes", "bookingId": 5390 },
-      { "id": "flitescooter", "name": "Flite Scooter Adventure", "price": "From $250", "duration": "90 minutes", "bookingId": 5417 }
+      { "id": "fliteboard", "short": "Fliteboard", "name": "eFoil Experience", "price": "From $250", "duration": "90 minutes", "bookingId": 5390 },
+      { "id": "flitescooter", "short": "Flitescooter", "name": "Flite Scooter Adventure", "price": "From $250", "duration": "90 minutes", "bookingId": 5417 }
     ]
   },
   "seabob": {
     "name": "Seabob Adventures",
+    "nameShort": "Seabob Adventure",
     "url": "/seabob-underwater-adventures/",
     "image": "/images/seabob.png",
     "hook": "Dive below the waves",
@@ -36,21 +38,9 @@
       { "id": "seabob", "name": "Seabob Underwater Adventure", "price": "From $180", "duration": "60 minutes", "bookingId": 5415 }
     ]
   },
-  "boat": {
-    "name": "Sarasota Boat Tours",
-    "url": "/sarasota-boat-tours/",
-    "image": "/images/tours.jpg",
-    "hook": "Private captained charters",
-    "from": "$425",
-    "note": "Up to 6 passengers",
-    "homeCard": true,
-    "options": [
-      { "id": "sunset-3hr", "name": "3-Hour Sunset Tour", "price": "$425", "duration": "3 hours", "bookingId": 6125 },
-      { "id": "boat-4hr", "name": "4-Hour Boat Tour", "price": "$499", "duration": "4 hours", "bookingId": 6093 }
-    ]
-  },
   "package": {
     "name": "Ultimate Adventure Package",
+    "nameShort": "Ultimate Adventure",
     "url": "/ultimate-adventure-package/",
     "tagline": "The complete Opua Adventures experience",
     "includes": [
@@ -69,6 +59,20 @@
     ],
     "options": [
       { "id": "package", "name": "Ultimate Adventure Package", "price": "$1,300", "duration": "2.5 hours", "bookingId": 5416 }
+    ]
+  },
+  "boat": {
+    "name": "Sarasota Boat Tours",
+    "nameShort": "Boat Tours",
+    "url": "/sarasota-boat-tours/",
+    "image": "/images/tours.jpg",
+    "hook": "Private captained charters",
+    "from": "$425",
+    "note": "Up to 6 passengers",
+    "homeCard": true,
+    "options": [
+      { "id": "sunset-3hr", "short": "3-Hr Sunset", "name": "3-Hour Sunset Tour", "price": "$425", "duration": "3 hours", "bookingId": 6125 },
+      { "id": "boat-4hr", "short": "4-Hr Tour", "name": "4-Hour Boat Tour", "price": "$499", "duration": "4 hours", "bookingId": 6093 }
     ]
   }
 }

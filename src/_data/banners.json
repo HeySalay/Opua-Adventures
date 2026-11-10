@@ -1,10 +1,10 @@
 {
   "home": {
-    "title": "Sarasota's Complete Water Adventure Experience",
+    "title": "Opua Adventures",
     "activities": [
-      { "icon": "icons/surfing-24.svg", "text": "Fly above the water on eFoils" },
-      { "icon": "icons/water-24.svg", "text": "Dive below with Seabobs" },
-      { "icon": "icons/boat-24.svg", "text": "Enjoy scenic boat tours" }
+      { "icon": "icons/surfing-24.svg", "text": "eFoils" },
+      { "icon": "icons/water-24.svg", "text": "Seabobs" },
+      { "icon": "icons/boat-24.svg", "text": "Boat Tours" }
     ],
     "checklist": ["Flite Authorized Partner", "Professional Instructors", "Free Delivery Available", "Ages 10+ Welcome"]
   },

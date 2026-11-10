@@ -1,8 +1,10 @@
 {# Defining Names — Page value first, site default as fallback #}
-{% set pageTitle %}{{ title }} | {{ site.name }}{% endset %}
+{# Inline set with ~ (join), not a {% set %}…{% endset %} block: a block escapes "&" to "&amp;"
+   as it captures, then {{ pageTitle }} escapes it again, so titles showed "&amp;" #}
+{% set pageTitle = title ~ " | " ~ site.name %}
 {% set pageDescription = description or site.seo.defaultDescription %}
 {% set shareImage = site.url + (socialImage or site.seo.socialImage) %}
-{% set pageUrl %}{{ site.url}}{{ page.url}}{% endset %}
+{% set pageUrl = site.url ~ page.url %}
 
 {# SEO #}
 <title>{{ pageTitle }}</title>
